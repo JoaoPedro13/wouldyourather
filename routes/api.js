@@ -3,6 +3,7 @@ const Answer = require('./../models/answer');
 const Question = require('./../models/question');
 const { Router } = require('express');
 const router = new Router();
+const routeGuard = require("./../middleware/route-guard");
 
 //GET RANDOM QUESTION (falta ver se o user já respondeu a este ID)
 router.get("/post/random", async (req, res, next) => {
@@ -44,16 +45,13 @@ router.post("/post/postId=:id", async (req, res, next) => {
 
 // CREATE QUESTION (ROUTEGUARDED)
 
-router.post("/post/create", async (req, res, next) => {
+router.post("/post/create", routeGuard, async (req, res, next) => {
+  const { optionA, optionB, category } = req.body;
+  const authorID = req.session.user;
   try {
-    const optionA = "Partir a perna";
-    const optionB = "Partir o braço";
-    const category = "heart";
-    const authorID = "5df23112e3e4144fba09b71c";
-
     const insertedQuestion = await Question.create({ optionA, optionB, category, authorID });
     console.log(insertedQuestion);
-    res.send("oi");
+    res.send(insertedQuestion);
   } catch (error) {
     next(error);
   }
@@ -72,6 +70,8 @@ router.get("/post/show=:num", async (req, res, next) => {
     next(error);
   }
 });
+
+
 
 
 module.exports = router;
