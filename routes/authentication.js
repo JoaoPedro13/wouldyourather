@@ -1,21 +1,24 @@
-'use strict';
+"use strict";
 
-const { Router } = require('express');
+const { Router } = require("express");
 
-const bcryptjs = require('bcryptjs');
-const User = require('./../models/user');
+const bcryptjs = require("bcryptjs");
+const User = require("./../models/user");
+const uploader = require("./../middleware/upload");
 
 const router = new Router();
 
-router.post('/sign-up', (req, res, next) => {
+router.post("/sign-up", uploader.single("picture"), (req, res, next) => {
   const { name, email, password } = req.body;
+  const picture = req.file ? req.file.url : "cloudinary picture url";
   bcryptjs
     .hash(password, 10)
     .then(hash => {
       return User.create({
         name,
         email,
-        passwordHash: hash
+        passwordHash: hash,
+        picture
       });
     })
     .then(user => {
@@ -27,7 +30,7 @@ router.post('/sign-up', (req, res, next) => {
     });
 });
 
-router.post('/sign-in', (req, res, next) => {
+router.post("/sign-in", (req, res, next) => {
   let user;
   const { email, password } = req.body;
   User.findOne({ email })
@@ -44,7 +47,7 @@ router.post('/sign-in', (req, res, next) => {
         req.session.user = user._id;
         res.json({ user });
       } else {
-        return Promise.reject(new Error('Wrong password.'));
+        return Promise.reject(new Error("Wrong password."));
       }
     })
     .catch(error => {
@@ -52,7 +55,7 @@ router.post('/sign-in', (req, res, next) => {
     });
 });
 
-router.post('/sign-out', (req, res, next) => {
+router.post("/sign-out", (req, res, next) => {
   req.session.destroy();
   res.json({});
 });
