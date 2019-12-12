@@ -21,10 +21,14 @@ const schema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"
     },
-    answers: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Answer"
-    }
+    answers:
+      [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Post'
+        }
+      ]
+
   },
   {
     timestamps: true
