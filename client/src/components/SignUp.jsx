@@ -21,10 +21,10 @@ export class SignUp extends Component {
 
   formHandler = async e => {
     e.preventDefault();
-    const user = this.state;
+    let user = this.state;
     console.log(user);
     try {
-      const user = await signUp(user);
+      user = await signUp(user);
       this.props.handleAuth(user);
       this.props.history.push(`/`);
     } catch (error) {

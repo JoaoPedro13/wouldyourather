@@ -5,7 +5,6 @@ import Question from "./views/Question";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
-import { userInformation } from "./services/authServices";
 
 export class App extends Component {
   constructor(props) {
@@ -27,6 +26,7 @@ export class App extends Component {
       <BrowserRouter>
         <Navbar user={this.state.user} handleAuth={this.changeAuthStatus} />
         {/* <button onClick={logOut}>logout</button> */}
+        <Link to="/post/random/"> Random </Link>
         <Switch>
           <Route path="/post/random/" component={Question}></Route>
           <Route path="/post/:questionId" component={Question}></Route>

@@ -16,7 +16,7 @@ export const getRandomQuestion = async () => {
 
 export const getQuestion = async id => {
   try {
-    const response = await apiService.get(`/postId=${id}`);
+    const response = await apiService.get(`/${id}`);
     //console.log(response.data);
     return response.data;
   } catch (error) {
@@ -25,8 +25,13 @@ export const getQuestion = async id => {
 };
 
 export const getAnswer = async (option, id) => {
+  const data = {
+    option,
+    id
+  };
+  console.log("OPTION ON SERVICE", option);
   try {
-    const response = await apiService.post(`/postId=${id}`, option, id);
+    const response = await apiService.post(`/${id}`, data);
     //console.log(response.data);
     return response.data;
   } catch (error) {

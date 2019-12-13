@@ -6,7 +6,7 @@ export class QuestionCard extends Component {
     super();
     this.state = {
       option: "",
-      questionId: ""
+      questionID: ""
     };
 
     this.selectOption = this.selectOption.bind(this);
@@ -14,28 +14,33 @@ export class QuestionCard extends Component {
   }
 
   selectOption(event) {
-    const questionId = this.props.questionToDisplay._id;
+    const questionID = this.props.questionToDisplay._id;
     this.setState({
       option: event.target.value,
-      questionId
+      questionID
     });
   }
 
   async answer() {
-    const questionId = this.state.questionId;
+    const questionID = this.state.questionID;
     const option = this.state.option;
-    console.log(questionId);
+    console.log(questionID);
     console.log(option);
     try {
-      const answer = await getAnswer(option, questionId);
+      const answer = await getAnswer(option, questionID);
       console.log(answer);
+      console.log(this.props.questionToDisplay);
     } catch (error) {
       console.log(error);
     }
   }
 
-  componentDidUpdate() {
-    this.answer();
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.option !== this.state.option) {
+      this.answer();
+      console.log("PREVPROPS", prevProps);
+      console.log("PROPS", this.props);
+    }
   }
   render() {
     return (

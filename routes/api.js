@@ -6,23 +6,28 @@ const router = new Router();
 const routeGuard = require("./../middleware/route-guard");
 
 //GET RANDOM QUESTION (falta ver se o user já respondeu a este ID)
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 router.get("/post/random", async (req, res, next) => {
   try {
     const count = await Question.countDocuments().exec();
-    console.log(count);
-    const random = Math.floor(Math.random() * count);
-    const retrievedQuestions = await Question.findOne()
+    const retrievedQuestions = await Question.find({
+      _id: { $nin: req.session.responded }
+    })
       .populate("authorID")
-      .skip(random)
       .exec();
-    res.json(retrievedQuestions);
+    const random = randomNumber(0, retrievedQuestions.length - 1);
+    res.json(retrievedQuestions[random]);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });
 
 //GET QUESTION BY ID (falta ver se o user já respondeu a este ID)
-router.get("/post/postId=:id", async (req, res, next) => {
+router.get("/post/:id", async (req, res, next) => {
   console.log(req.params.id);
   try {
     const retrievedQuestion = await Question.findById(req.params.id).populate(
@@ -55,20 +60,29 @@ router.get("/post/postId=:id", async (req, res, next) => {
   }
 }); */
 
-router.post("/post/postId=:id", async (req, res, next) => {
-  console.log(req.body);
+//TODO: Check if anything missing -> If the ID is in the url it will show for both random and non-random
+router.post("/post/:id", async (req, res, next) => {
+  // req.session.responded.push(req.params.id);
+  req.session.responded = [...(req.session.responded || []), req.params.id];
+  console.log(req.body.option, req.session);
   try {
     const insertedAnswer = await Answer.create({
-      questionID: req.body.id,
+      questionID: req.params.id,
       option: req.body.option
     });
-    const relatedQuestion = await Question.findByIdAndUpdate(req.body.id, {
+    const relatedQuestion = await Question.findByIdAndUpdate(req.params.id, {
       $push: { answers: insertedAnswer._id }
     });
-    console.log(insertedAnswer, relatedQuestion);
+    console.log(
+      "InsertedAnswer----->",
+      insertedAnswer,
+      "RelatedQuestion----->",
+      relatedQuestion
+    );
 
     res.send(insertedAnswer);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });
