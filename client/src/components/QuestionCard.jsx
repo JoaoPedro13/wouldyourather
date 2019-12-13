@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from "react";
+import { Icon } from "./Icon"
 import { getAnswer } from "../services/contentServices";
 
 export class QuestionCard extends Component {
@@ -56,8 +57,8 @@ export class QuestionCard extends Component {
             </button>
 
             <br />
-            {/* <img src={this.props.questionToDisplay.category} alt="category-icon" /> */}
-            <p>{this.props.questionToDisplay.category}</p>
+            <Icon category={this.props.questionToDisplay.category} />
+
             <br />
 
             <button
