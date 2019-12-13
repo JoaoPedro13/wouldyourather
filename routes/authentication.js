@@ -1,14 +1,12 @@
-'use strict';
+"use strict";
 
-const { Router } = require('express');
+const { Router } = require("express");
 const router = new Router();
-const User = require('./../models/user');
-const bcryptjs = require('bcryptjs');
+const User = require("./../models/user");
+const bcryptjs = require("bcryptjs");
 const imgUploader = require("./../middleware/multer-configuration");
 
-
-
-router.post('/login', async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   console.log("req.body", req.body);
   const { email, password } = req.body;
   try {
@@ -22,31 +20,27 @@ router.post('/login', async (req, res, next) => {
     if (!matchesPassword) throw new Error("Wrong password bro");
     req.session.user = user._id;
     res.json({ user });
-
-
   } catch (error) {
     console.log("error caught here");
     next(error);
   }
-
-
 });
 
-router.post('/signup', imgUploader.single("image"), async (req, res, next) => {
+router.post("/signup", imgUploader.single("image"), async (req, res, next) => {
   const { name, email, password } = req.body;
-  const picture = req.file ? req.file.url : "https://res.cloudinary.com/db1i5vxr8/image/upload/v1575997473/sample.jpg";
+  const picture = req.file
+    ? req.file.url
+    : "https://res.cloudinary.com/db1i5vxr8/image/upload/v1575997473/sample.jpg";
   try {
     const passwordHash = await bcryptjs.hash(password, 10);
-    if (!passwordHash) throw new Error("something fucked up bro");
+    if (!passwordHash) throw new Error("Wrong Password");
     const newUser = await User.create({ name, passwordHash, email, picture });
-    if (!newUser) throw new Error("Couldn't create user bro");
+    if (!newUser) throw new Error("Wrong email");
     req.session.user = newUser._id;
     res.json({ newUser });
-
-
-  } catch (error) { next(error); }
-
-
+  } catch (error) {
+    next(error);
+  }
 });
 //TODO: finish this
 
@@ -54,33 +48,34 @@ router.post("/edituser", async (req, res, next) => {
   const { name, picture } = req.body;
   const currentUserId = req.user._id;
   try {
-    const updatedUser = await User.findOneAndUpdate({ _id: currentUserId }, { name, picture }).exec();
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: currentUserId },
+      { name, picture }
+    ).exec();
     res.json({ updatedUser });
-
-  } catch (error) { next(error); }
-
-
-
+  } catch (error) {
+    next(error);
+  }
 });
 
-
-
-router.post('/logout', (req, res, next) => {
+router.post("/logout", (req, res, next) => {
   req.session.destroy();
 
-  res.json({});
+  res.json({ message: "successfully logged out user" });
 });
 
-/*
-router.get('/loggedin', async (req, res, next) => {
-
-
-
-});
- */
-
-
-
-
+/* router.get("/user-information", async (req, res, next) => {
+  const userId = req.session.user;
+  if (!userId) {
+    res.json({});
+  } else {
+    try {
+      const user = await User.findById(userId);
+      if (!user) throw new Error("user no found");
+    } catch (error) {
+      next(error);
+    }
+  }
+}); */
 
 module.exports = router;

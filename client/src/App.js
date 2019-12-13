@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import "./App.css";
+import Question from "./views/Question";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import Navbar from "./components/Navbar";
+import { userInformation } from "./services/authServices";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null
+    };
+    this.changeAuthStatus = this.changeAuthStatus.bind(this);
+  }
+
+  changeAuthStatus(user) {
+    console.log();
+    this.setState({
+      user: user
+    });
+  }
+  render() {
+    return (
+      <BrowserRouter>
+        <Navbar user={this.state.user} handleAuth={this.changeAuthStatus} />
+        {/* <button onClick={logOut}>logout</button> */}
+        <Switch>
+          <Route path="/post/random/" component={Question}></Route>
+          <Route path="/post/:questionId" component={Question}></Route>
+          <Route
+            path="/login"
+            render={props => (
+              <Login {...props} handleAuth={this.changeAuthStatus} />
+            )}
+          />
+          <Route
+            path="/signup"
+            render={props => (
+              <SignUp {...props} handleAuth={this.changeAuthStatus} />
+            )}
+          />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
