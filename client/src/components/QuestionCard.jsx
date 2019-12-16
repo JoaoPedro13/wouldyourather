@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from "react";
-import { Icon } from "./Icon"
+import { Icon } from "./Icon";
 import { getAnswer } from "../services/contentServices";
 
 export class QuestionCard extends Component {
@@ -37,11 +37,11 @@ export class QuestionCard extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.option !== this.state.option) {
-      this.answer();
-      console.log("PREVPROPS", prevProps);
-      console.log("PROPS", this.props);
-    }
+    //if (prevState.option !== this.state.option) {
+    this.answer();
+    console.log("PREVPROPS", prevProps);
+    console.log("PROPS", this.props);
+    //}
   }
   render() {
     return (
