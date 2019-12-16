@@ -7,7 +7,6 @@ const apiService = axios.create({
 export const getRandomQuestion = async () => {
   try {
     const response = await apiService.get(`/random`);
-    //console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -15,20 +14,16 @@ export const getRandomQuestion = async () => {
 };
 
 export const createQuestion = async data => {
-  console.log("DATA-------", data);
   try {
     const response = await apiService.post("/create", data);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 export const editQuestion = async data => {
-  console.log("DATA----c---", data);
   try {
     const response = await apiService.post(`/edit/${data.id}`, data);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -50,7 +45,6 @@ export const getAnswer = async (option, id) => {
     option,
     id
   };
-  console.log("OPTION ON SERVICE", option);
   try {
     const response = await apiService.post(`/${id}`, data);
     //console.log(response.data);
@@ -68,3 +62,13 @@ export const getAuthorQuestions = async authorID => {
     throw error;
   }
 };
+export const getTopQuestions = async () => {
+  try {
+    const retrievedQuestions = await apiService.get("/top");
+
+    return retrievedQuestions;
+  } catch (error) {
+    throw error;
+  }
+};
+
