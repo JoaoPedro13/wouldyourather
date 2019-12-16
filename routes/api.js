@@ -9,6 +9,22 @@ const routeGuard = require("./../middleware/route-guard");
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+router.get("/post/top", async (req, res, next) => {
+
+  try {
+    const retrievedQuestions = await Question.find();
+    const sortedQuestions = retrievedQuestions.sort((questionA, questionB) => questionA.answers.length >= questionB.answers.length ? -1 : 1);
+
+    console.log(sortedQuestions.splice(4, sortedQuestions.length));
+    res.json(sortedQuestions);
+
+
+  } catch (error) { next(error); }
+
+});
+
+
 router.get("/post/random", async (req, res, next) => {
   try {
     //const count = await Question.countDocuments().exec();
@@ -66,7 +82,7 @@ router.get("/post/:id", async (req, res, next) => {
   // console.log(req.params.id, "here");
   try {
     const retrievedQuestion = await Question.findById(req.params.id).populate(
-      "authorID"
+      "authorID answers"
     );
     console.log("QUESTION", retrievedQuestion);
 
@@ -149,5 +165,7 @@ router.get("/post/byauthor/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+
 
 module.exports = router;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { editQuestion as edit } from "../services/contentServices";
 import { getQuestion } from "../services/contentServices";
+import QuestionStats from "./QuestionStats";
 
 export class EditQuestion extends Component {
   constructor(props) {
@@ -96,6 +97,7 @@ export class EditQuestion extends Component {
 
           <button>Update your dilema</button>
         </form>
+        <QuestionStats match={this.props.match} />
       </div>
     );
   }
