@@ -8,6 +8,7 @@ import Home from "./views/Home";
 import Profile from "./views/Profile";
 import CreateQuestion from "./views/CreateQuestion";
 import EditQuestion from "./views/EditQuestion";
+import QuestionStats from "./views/QuestionStats";
 
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -49,11 +50,15 @@ export class App extends Component {
         {/* <button onClick={logOut}>logout</button> */}
 
         <Switch>
-          <Route path="/post/random" component={Question}></Route>
-          <Route path="/post/create" component={CreateQuestion}></Route>
+          <Route exact path="/post/random" component={Question}></Route>
+          <Route exact path="/post/create" component={CreateQuestion}></Route>
           <Route
             path={`/post/edit/:questionId`}
             component={EditQuestion}
+          ></Route>
+          <Route
+            path={`/post/stats/:questionId`}
+            component={QuestionStats}
           ></Route>
 
           <Route path="/post/:questionId" component={Question}></Route>

@@ -16,14 +16,12 @@ export class Question extends Component {
 
     if (url === "/post/random") {
       const retrievedQuestion = await getRandomQuestion();
-      //console.log(retrievedQuestion);
       this.setState({
         currentQuestion: retrievedQuestion
       });
     } else {
       const id = this.props.match.params.questionId;
       const retrievedQuestion = await getQuestion(id);
-      console.log("asd");
       this.setState({
         currentQuestion: retrievedQuestion
       });
@@ -35,13 +33,12 @@ export class Question extends Component {
   }
 
   render() {
-    console.log("PROPS", this.props);
     return (
       <Fragment>
         <header>
           <h1>Would You Rather</h1>
         </header>
-        <QuestionCard questionToDisplay={this.state.currentQuestion} />
+        <QuestionCard questionToDisplay={this.state.currentQuestion} history={this.props.history} />
       </Fragment>
     );
   }
