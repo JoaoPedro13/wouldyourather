@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-
+import React, { Component } from "react";
+import { createQuestion as create } from "../services/contentServices";
 
 export class CreateQuestion extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      title: "",
       optionA: "",
       optionB: "",
       category: ""
@@ -19,21 +20,27 @@ export class CreateQuestion extends Component {
 
   formHandler = async e => {
     e.preventDefault();
-    
+
     try {
-      await 
-      //this.props.history.push(`/`);
+      await create(this.state);
+      this.props.history.push(`/profile`);
     } catch (error) {
       console.log(error);
     }
   };
 
-
-
   render() {
     return (
       <div>
         <form onSubmit={this.formHandler}>
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            onChange={this.handleChange}
+          />
+
           <label htmlFor="optionA">optionA</label>
           <input
             type="text"
@@ -49,7 +56,7 @@ export class CreateQuestion extends Component {
             name="optionB"
             onChange={this.handleChange}
           />
-           <label htmlFor="category">category</label>
+          <label htmlFor="category">category</label>
           <select
             name="category"
             onChange={this.handleChange}
@@ -70,4 +77,4 @@ export class CreateQuestion extends Component {
     );
   }
 }
-export default CreateQuestion
+export default CreateQuestion;

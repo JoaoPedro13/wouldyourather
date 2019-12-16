@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import { edit, userInformation } from "./../services/authServices"
-import { getAuthorQuestions } from "./../services/contentServices"
-import { Link } from "react-router-dom"
+import React, { Component } from "react";
+import { edit, userInformation } from "./../services/authServices";
+import { getAuthorQuestions } from "./../services/contentServices";
+import { Link } from "react-router-dom";
 
 export class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
+      user: null
     };
   }
 
@@ -18,16 +18,12 @@ export class Profile extends Component {
         this.setState({ user: verifiedUser });
         const userQuestions = await getAuthorQuestions(this.state.user._id);
         this.setState({ questions: userQuestions });
+      } catch (error) {
+        console.log(error);
+        this.setState({ user: null });
       }
-      catch (error) {
-        console.log(error); this.setState({ user: null })
-
-      }
-
     }
-
   }
-
 
   handleChange = event => {
     //console.log(event.target.name);
@@ -54,33 +50,36 @@ export class Profile extends Component {
     return (
       <div className="signup">
         <h1>My Profile</h1>
-        {(this.state.user && <form onSubmit={this.formHandler} className="signup-form">
-          <img src={this.state.user.picture} alt="user" />
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            onChange={this.handleChange}
-            value={this.state.user.name}
-          />
+        {this.state.user && (
+          <form onSubmit={this.formHandler} className="signup-form">
+            <img src={this.state.user.picture} alt="user" />
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              onChange={this.handleChange}
+              value={this.state.user.name}
+            />
 
-
-
-          <button>Update</button>
-        </form>)}
+            <button>Update</button>
+          </form>
+        )}
         <h1>My Questions</h1>
         <ul>
-
-          {this.state.questions && this.state.questions.map(question => <li>{question.title}</li>)
-          }
-
+          {this.state.questions &&
+            this.state.questions.map(question => (
+              <li key={question._id}>
+                {question.title}
+                <Link to={`post/edit/${question._id}`}> Edit</Link>
+              </li>
+            ))}
         </ul>
 
-        <Link>Create New</Link>
+        <Link to="/post/create">Create New</Link>
       </div>
     );
   }
 }
 
-export default Profile
+export default Profile;

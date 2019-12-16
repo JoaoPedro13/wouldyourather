@@ -6,12 +6,14 @@ import "./App.css";
 import Question from "./views/Question";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
+import CreateQuestion from "./views/CreateQuestion";
+import EditQuestion from "./views/EditQuestion";
 
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
 
-import { userInformation } from "./services/authServices"
+import { userInformation } from "./services/authServices";
 
 export class App extends Component {
   constructor(props) {
@@ -20,7 +22,6 @@ export class App extends Component {
       user: null
     };
     this.changeAuthStatus = this.changeAuthStatus.bind(this);
-
   }
 
   async componentDidMount() {
@@ -28,14 +29,11 @@ export class App extends Component {
       try {
         const verifiedUser = await userInformation();
         this.setState({ user: verifiedUser });
+      } catch (error) {
+        console.log(error);
+        this.setState({ user: null });
       }
-      catch (error) {
-        console.log(error); this.setState({ user: null })
-
-      }
-
     }
-
   }
 
   changeAuthStatus(user) {
@@ -51,14 +49,14 @@ export class App extends Component {
         {/* <button onClick={logOut}>logout</button> */}
 
         <Switch>
-<<<<<<< HEAD
           <Route path="/post/random" component={Question}></Route>
-          <Route path="/post/:questionId" component={Question}></Route>
-=======
-          <Route path="/post/:id" component={Question} />
-          <Route path="/post/random" component={Question} />
+          <Route path="/post/create" component={CreateQuestion}></Route>
+          <Route
+            path={`/post/edit/:questionId`}
+            component={EditQuestion}
+          ></Route>
 
->>>>>>> d3da97ce787d37fbfa636cb07bbabb4a57b8b43d
+          <Route path="/post/:questionId" component={Question}></Route>
           <Route
             path="/login"
             render={props => (
@@ -70,23 +68,11 @@ export class App extends Component {
             render={props => (
               <SignUp {...props} handleAuth={this.changeAuthStatus} />
             )}
-
           />
 
-          <Route
-            path="/profile"
-            render={props => (
-              <Profile {...props} />
-            )}
-
-          />
-
-
+          <Route path="/profile" render={props => <Profile {...props} />} />
 
           <Route path="/" component={Home} />
-
-
-
         </Switch>
       </BrowserRouter>
     );

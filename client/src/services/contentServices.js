@@ -15,9 +15,20 @@ export const getRandomQuestion = async () => {
 };
 
 export const createQuestion = async data => {
+  console.log("DATA-------", data);
   try {
     const response = await apiService.post("/create", data);
-    //console.log(response.data);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const editQuestion = async data => {
+  console.log("DATA----c---", data);
+  try {
+    const response = await apiService.post(`/edit/${data.id}`, data);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -49,12 +60,11 @@ export const getAnswer = async (option, id) => {
   }
 };
 
-export const getAuthorQuestions = async (authorID) => {
+export const getAuthorQuestions = async authorID => {
   try {
     const retrievedQuestions = await apiService.get("/byauthor/" + authorID);
     return retrievedQuestions.data;
-
   } catch (error) {
     throw error;
   }
-}
+};

@@ -16,22 +16,19 @@ export class Navbar extends Component {
       <nav>
         {(this.props.user && (
           <Fragment>
+            <Link to="/">Home</Link>
             <Link onClick={this.handleSignOut} to="/">
               Log Out
             </Link>
-            <Link to="/profile">
-              Profile
-            </Link>
-            <Link onClick={this.handleSignOut} to="/">
-              Create
-            </Link>
+            <Link to="/profile">Profile</Link>
+            <Link to="/post/create">Create</Link>
           </Fragment>
         )) || (
-            <Fragment>
-              <Link to="/signup">Sign Up</Link>
-              <Link to="/login">Log In</Link>
-            </Fragment>
-          )}
+          <Fragment>
+            <Link to="/signup">Sign Up</Link>
+            <Link to="/login">Log In</Link>
+          </Fragment>
+        )}
       </nav>
     );
   }

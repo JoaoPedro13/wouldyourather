@@ -9,28 +9,25 @@ export class Question extends Component {
       currentQuestion: null
     };
     this.callQuestion = this.callQuestion.bind(this);
-
   }
 
   async callQuestion() {
-    const id = this.props.match.params.id;
+    const url = this.props.match.url;
 
-    console.log("oi", id);
-    if (id === "random") {
+    if (url === "/post/random") {
       const retrievedQuestion = await getRandomQuestion();
       //console.log(retrievedQuestion);
       this.setState({
         currentQuestion: retrievedQuestion
       });
-    }
-    else {
+    } else {
+      const id = this.props.match.params.questionId;
       const retrievedQuestion = await getQuestion(id);
-      //console.log(retrievedQuestion);
+      console.log("asd");
       this.setState({
         currentQuestion: retrievedQuestion
       });
     }
-
   }
 
   componentDidMount() {

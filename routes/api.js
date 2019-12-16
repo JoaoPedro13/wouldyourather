@@ -24,6 +24,43 @@ router.get("/post/random", async (req, res, next) => {
     next(error);
   }
 });
+
+// CREATE QUESTION (ROUTEGUARDED)
+router.post("/post/create", routeGuard, async (req, res, next) => {
+  const { optionA, optionB, category, title } = req.body;
+  const authorID = req.session.user;
+  try {
+    const insertedQuestion = await Question.create({
+      optionA,
+      optionB,
+      category,
+      title,
+      authorID
+    });
+    console.log(insertedQuestion);
+    res.send(insertedQuestion);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/post/edit/:id", routeGuard, async (req, res, next) => {
+  const { optionA, optionB, category, title } = req.body;
+  const id = req.params.id;
+  try {
+    const insertedQuestion = await Question.findByIdAndUpdate(id, {
+      optionA,
+      optionB,
+      category,
+      title
+    });
+    console.log(insertedQuestion);
+    res.send(insertedQuestion);
+  } catch (error) {
+    next(error);
+  }
+});
+
 //GET QUESTION BY ID (falta ver se o user já respondeu a este ID)
 router.get("/post/:id", async (req, res, next) => {
   // console.log(req.params.id, "here");
@@ -85,28 +122,9 @@ router.post("/post/:id", async (req, res, next) => {
   }
 });
 
-// CREATE QUESTION (ROUTEGUARDED)
-
-router.post("/post/create", routeGuard, async (req, res, next) => {
-  const { optionA, optionB, category } = req.body;
-  const authorID = req.session.user;
-  try {
-    const insertedQuestion = await Question.create({
-      optionA,
-      optionB,
-      category,
-      authorID
-    });
-    console.log(insertedQuestion);
-    res.send(insertedQuestion);
-  } catch (error) {
-    next(error);
-  }
-});
-
 // SHOW LIST OF N QUESTIONS
 
-router.get("/post/:num", async (req, res, next) => {
+/* router.get("/post/:num", async (req, res, next) => {
   const howManyDocs = Number.parseInt(req.params.num);
 
   try {
@@ -117,7 +135,7 @@ router.get("/post/:num", async (req, res, next) => {
     next(error);
   }
 });
-
+ */
 //SHOW ALL QUESTIONS BY AUTHOR ID
 
 router.get("/post/byauthor/:id", async (req, res, next) => {
@@ -131,6 +149,5 @@ router.get("/post/byauthor/:id", async (req, res, next) => {
     next(error);
   }
 });
-
 
 module.exports = router;
