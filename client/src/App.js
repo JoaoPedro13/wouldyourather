@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+
 import "./App.css";
+
 import Question from "./views/Question";
+import Home from "./views/Home";
+import Profile from "./views/Profile";
+
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
+
+import { userInformation } from "./services/authServices"
 
 export class App extends Component {
   constructor(props) {
@@ -13,6 +20,22 @@ export class App extends Component {
       user: null
     };
     this.changeAuthStatus = this.changeAuthStatus.bind(this);
+
+  }
+
+  async componentDidMount() {
+    if (!this.state.user) {
+      try {
+        const verifiedUser = await userInformation();
+        this.setState({ user: verifiedUser });
+      }
+      catch (error) {
+        console.log(error); this.setState({ user: null })
+
+      }
+
+    }
+
   }
 
   changeAuthStatus(user) {
@@ -26,10 +49,16 @@ export class App extends Component {
       <BrowserRouter>
         <Navbar user={this.state.user} handleAuth={this.changeAuthStatus} />
         {/* <button onClick={logOut}>logout</button> */}
-        <Link to="/post/random/"> Random </Link>
+
         <Switch>
+<<<<<<< HEAD
           <Route path="/post/random" component={Question}></Route>
           <Route path="/post/:questionId" component={Question}></Route>
+=======
+          <Route path="/post/:id" component={Question} />
+          <Route path="/post/random" component={Question} />
+
+>>>>>>> d3da97ce787d37fbfa636cb07bbabb4a57b8b43d
           <Route
             path="/login"
             render={props => (
@@ -41,7 +70,23 @@ export class App extends Component {
             render={props => (
               <SignUp {...props} handleAuth={this.changeAuthStatus} />
             )}
+
           />
+
+          <Route
+            path="/profile"
+            render={props => (
+              <Profile {...props} />
+            )}
+
+          />
+
+
+
+          <Route path="/" component={Home} />
+
+
+
         </Switch>
       </BrowserRouter>
     );
