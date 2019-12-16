@@ -14,6 +14,16 @@ export const getRandomQuestion = async () => {
   }
 };
 
+export const createQuestion = async data => {
+  try {
+    const response = await apiService.post("/create", data);
+    //console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getQuestion = async id => {
   try {
     const response = await apiService.get(`/${id}`);

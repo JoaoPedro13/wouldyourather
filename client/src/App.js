@@ -28,7 +28,7 @@ export class App extends Component {
         {/* <button onClick={logOut}>logout</button> */}
         <Link to="/post/random/"> Random </Link>
         <Switch>
-          <Route path="/post/random/" component={Question}></Route>
+          <Route path="/post/random" component={Question}></Route>
           <Route path="/post/:questionId" component={Question}></Route>
           <Route
             path="/login"

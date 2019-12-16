@@ -9,10 +9,9 @@ const routeGuard = require("./../middleware/route-guard");
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
 router.get("/post/random", async (req, res, next) => {
   try {
-    const count = await Question.countDocuments().exec();
+    //const count = await Question.countDocuments().exec();
     const retrievedQuestions = await Question.find({
       _id: { $nin: req.session.responded }
     })
@@ -25,7 +24,6 @@ router.get("/post/random", async (req, res, next) => {
     next(error);
   }
 });
-
 //GET QUESTION BY ID (falta ver se o user já respondeu a este ID)
 router.get("/post/:id", async (req, res, next) => {
   console.log(req.params.id);
@@ -33,7 +31,7 @@ router.get("/post/:id", async (req, res, next) => {
     const retrievedQuestion = await Question.findById(req.params.id).populate(
       "authorID"
     );
-    console.log(retrievedQuestion);
+    console.log("QUESTION", retrievedQuestion);
 
     res.send(retrievedQuestion);
   } catch (error) {
@@ -43,22 +41,22 @@ router.get("/post/:id", async (req, res, next) => {
 
 //POST ANSWER BY ID (falta ver se o user já respondeu a este ID)
 /* router.post("/post/postId=:id", async (req, res, next) => {
-  console.log(req.body);
-  try {
-    const insertedAnswer = await Answer.create({
-      questionID: req.params.id,
-      option: req.body.option
-    });
-    const relatedQuestion = await Question.findByIdAndUpdate(req.params.id, {
-      $push: { answers: insertedAnswer._id }
-    });
-    console.log(insertedAnswer, relatedQuestion);
-
-    res.send(insertedAnswer);
-  } catch (error) {
-    next(error);
-  }
-}); */
+    console.log(req.body);
+    try {
+      const insertedAnswer = await Answer.create({
+        questionID: req.params.id,
+        option: req.body.option
+      });
+      const relatedQuestion = await Question.findByIdAndUpdate(req.params.id, {
+        $push: { answers: insertedAnswer._id }
+      });
+      console.log(insertedAnswer, relatedQuestion);
+      
+      res.send(insertedAnswer);
+    } catch (error) {
+      next(error);
+    }
+  }); */
 
 //TODO: Check if anything missing -> If the ID is in the url it will show for both random and non-random
 router.post("/post/:id", async (req, res, next) => {
@@ -108,7 +106,7 @@ router.post("/post/create", routeGuard, async (req, res, next) => {
 
 // SHOW LIST OF N QUESTIONS
 
-router.get("/post/show=:num", async (req, res, next) => {
+router.get("/post/:num", async (req, res, next) => {
   const howManyDocs = Number.parseInt(req.params.num);
 
   try {
