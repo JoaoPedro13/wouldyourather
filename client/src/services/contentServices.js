@@ -38,3 +38,13 @@ export const getAnswer = async (option, id) => {
     throw error;
   }
 };
+
+export const getAuthorQuestions = async (authorID) => {
+  try {
+    const retrievedQuestions = await apiService.get("/byauthor/" + authorID);
+    return retrievedQuestions.data;
+
+  } catch (error) {
+    throw error;
+  }
+}

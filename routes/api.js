@@ -28,7 +28,7 @@ router.get("/post/random", async (req, res, next) => {
 
 //GET QUESTION BY ID (falta ver se o user já respondeu a este ID)
 router.get("/post/:id", async (req, res, next) => {
-  console.log(req.params.id);
+  // console.log(req.params.id, "here");
   try {
     const retrievedQuestion = await Question.findById(req.params.id).populate(
       "authorID"
@@ -119,5 +119,20 @@ router.get("/post/show=:num", async (req, res, next) => {
     next(error);
   }
 });
+
+//SHOW ALL QUESTIONS BY AUTHOR ID
+
+router.get("/post/byauthor/:id", async (req, res, next) => {
+  const authorID = req.params.id;
+
+  try {
+    const retrievedQuestions = await Question.find({ authorID: authorID });
+    console.log(retrievedQuestions);
+    res.json(retrievedQuestions);
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = router;
