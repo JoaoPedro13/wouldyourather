@@ -6,6 +6,13 @@ const apiAuthenticationService = axios.create({
 
 /// MISSING EDIT SERVICE
 
+export const edit = async data => {
+  try {
+    const response = await apiAuthenticationService.post("/edituser", data);
+    console.log(response);
+  } catch (error) { throw error; }
+};
+
 export const login = async data => {
   try {
     const response = await apiAuthenticationService.post(`/login`, data);
@@ -32,11 +39,14 @@ export const logOut = async () => {
   }
 };
 
-/* export const userInformation = async () => {
+
+
+export const userInformation = async () => {
   try {
     const response = await apiAuthenticationService.get(`/user-information`);
     return response.data.user;
   } catch (error) {
     throw error;
   }
-}; */
+};
+

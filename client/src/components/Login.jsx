@@ -22,7 +22,7 @@ export class Login extends Component {
     //console.log(user);
     try {
       await login(user);
-      this.props.handleAuth(user);
+      this.props.handleAuth(user.email);
       this.props.history.push(`/`);
     } catch (error) {
       console.log(error);

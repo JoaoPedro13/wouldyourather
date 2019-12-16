@@ -19,13 +19,19 @@ export class Navbar extends Component {
             <Link onClick={this.handleSignOut} to="/">
               Log Out
             </Link>
+            <Link to="/profile">
+              Profile
+            </Link>
+            <Link onClick={this.handleSignOut} to="/">
+              Create
+            </Link>
           </Fragment>
         )) || (
-          <Fragment>
-            <Link to="/signup">Sign Up</Link>
-            <Link to="/login">Log In</Link>
-          </Fragment>
-        )}
+            <Fragment>
+              <Link to="/signup">Sign Up</Link>
+              <Link to="/login">Log In</Link>
+            </Fragment>
+          )}
       </nav>
     );
   }

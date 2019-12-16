@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema(
   {
+    title: {
+      type: String,
+      required: true
+    },
     optionA: {
       type: String,
       required: true
