@@ -2,7 +2,7 @@ import React, { Fragment, Component } from "react";
 
 import { Icon } from "./Icon";
 import { getAnswer } from "../services/contentServices";
-import { Link, Redirect } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom";
 
 
 export class QuestionCard extends Component {
@@ -24,7 +24,6 @@ export class QuestionCard extends Component {
               to={"/post/stats/" + this.props.questionToDisplay._id}
               name="option"
               value="A"
-
             >
               {this.props.questionToDisplay.optionA}
             </Link>
@@ -54,7 +53,6 @@ export class QuestionCard extends Component {
             </footer>
           </Fragment>
         )}
-
       </div>
     );
   }

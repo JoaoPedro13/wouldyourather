@@ -10,22 +10,31 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+<<<<<<< HEAD
+router.get("/post/top", async (req, res, next) => {
+=======
 router.get("/top", async (req, res, next) => {
 
+>>>>>>> 202c7c002bcb4e3802613db2c07c6d3b03ee35bb
   try {
     const retrievedQuestions = await Question.find();
-    const sortedQuestions = retrievedQuestions.sort((questionA, questionB) => questionA.answers.length >= questionB.answers.length ? -1 : 1);
+    const sortedQuestions = retrievedQuestions.sort((questionA, questionB) =>
+      questionA.answers.length >= questionB.answers.length ? -1 : 1
+    );
 
-    console.log(sortedQuestions.splice(4, sortedQuestions.length));
+    console.log(sortedQuestions.splice(5, sortedQuestions.length));
     res.json(sortedQuestions);
-
-
-  } catch (error) { next(error); }
-
+  } catch (error) {
+    next(error);
+  }
 });
 
+<<<<<<< HEAD
+router.get("/post/random", async (req, res, next) => {
+=======
 
 router.get("/random", async (req, res, next) => {
+>>>>>>> 202c7c002bcb4e3802613db2c07c6d3b03ee35bb
   try {
     //const count = await Question.countDocuments().exec();
     const retrievedQuestions = await Question.find({
@@ -152,7 +161,5 @@ router.get("/byauthor/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-
 
 module.exports = router;
