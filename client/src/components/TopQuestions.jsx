@@ -30,7 +30,7 @@ export class TopQuestions extends Component {
         <ol>
           {this.state.topList &&
             this.state.topList.map(question => (
-              <Link to={"/post/" + question._id}>
+              <Link key={question._id} to={"/post/" + question._id}>
                 <li>{question.title}</li>
               </Link>
             ))}

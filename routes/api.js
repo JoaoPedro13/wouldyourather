@@ -11,19 +11,18 @@ function randomNumber(min, max) {
 }
 
 router.get("/post/top", async (req, res, next) => {
-
   try {
     const retrievedQuestions = await Question.find();
-    const sortedQuestions = retrievedQuestions.sort((questionA, questionB) => questionA.answers.length >= questionB.answers.length ? -1 : 1);
+    const sortedQuestions = retrievedQuestions.sort((questionA, questionB) =>
+      questionA.answers.length >= questionB.answers.length ? -1 : 1
+    );
 
-    console.log(sortedQuestions.splice(4, sortedQuestions.length));
+    console.log(sortedQuestions.splice(5, sortedQuestions.length));
     res.json(sortedQuestions);
-
-
-  } catch (error) { next(error); }
-
+  } catch (error) {
+    next(error);
+  }
 });
-
 
 router.get("/post/random", async (req, res, next) => {
   try {
@@ -165,7 +164,5 @@ router.get("/post/byauthor/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-
 
 module.exports = router;
