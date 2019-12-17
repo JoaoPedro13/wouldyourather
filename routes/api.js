@@ -10,12 +10,8 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-<<<<<<< HEAD
-router.get("/post/top", async (req, res, next) => {
-=======
 router.get("/top", async (req, res, next) => {
 
->>>>>>> 202c7c002bcb4e3802613db2c07c6d3b03ee35bb
   try {
     const retrievedQuestions = await Question.find();
     const sortedQuestions = retrievedQuestions.sort((questionA, questionB) =>
