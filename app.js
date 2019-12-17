@@ -16,6 +16,7 @@ const authenticationRouter = require("./routes/authentication");
 
 const app = express();
 
+app.use(express.static(join(__dirname, 'client/build')));
 app.use(serveFavicon(join(__dirname, "public/images", "favicon.ico")));
 app.use(logger("dev"));
 app.use(express.urlencoded());
@@ -29,7 +30,7 @@ app.use(
     cookie: {
       maxAge: 365 * 24 * 60 * 60 * 1000,
       sameSite: "lax",
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV === "production"
     },
     store: new (connectMongo(expressSession))({
@@ -42,7 +43,11 @@ app.use(basicAuthenticationDeserializer);
 app.use(bindUserToViewLocals);
 
 app.use("/auth", authenticationRouter);
-app.use("/", apiRouter);
+app.use("/post", apiRouter);
+
+app.get('*', (req, res) => { res.sendFile(join(__dirname, 'client/build/index.html')); });
+
+
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
