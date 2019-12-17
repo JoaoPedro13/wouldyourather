@@ -21,16 +21,17 @@ export class QuestionCard extends Component {
     const questionID = this.props.questionToDisplay._id;
     this.setState({
       option: event.target.value,
-      questionID, userAnswered: true,
+      questionID
     });
 
   }
 
   componentDidUpdate() {
 
+    this.answer();
     if (this.state.userAnswered) {
-      this.answer();
-      this.props.history.push("/post/stats/" + this.state.questionID);
+      this.props.history.push("/post/stats/" + this.state.questionID)
+
     }
   }
 
@@ -40,6 +41,8 @@ export class QuestionCard extends Component {
 
     try {
       const answer = await getAnswer(option, questionID);
+      this.setState({ userAnswered: true });
+
 
     } catch (error) {
       console.log(error);
