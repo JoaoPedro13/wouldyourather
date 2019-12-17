@@ -10,12 +10,7 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-<<<<<<< HEAD
-router.get("/post/top", async (req, res, next) => {
-=======
 router.get("/top", async (req, res, next) => {
-
->>>>>>> 202c7c002bcb4e3802613db2c07c6d3b03ee35bb
   try {
     const retrievedQuestions = await Question.find();
     const sortedQuestions = retrievedQuestions.sort((questionA, questionB) =>
@@ -28,7 +23,6 @@ router.get("/top", async (req, res, next) => {
     next(error);
   }
 });
-
 
 router.get("/random", async (req, res, next) => {
   try {
@@ -70,15 +64,16 @@ router.post("/edit/:id", routeGuard, async (req, res, next) => {
   const currentUser = req.session.user;
   const currentQuestion = req.params.id;
 
-
-
   try {
-    const insertedQuestion = await Question.findOneAndUpdate({ AuthorID: currentUser, _id: currentQuestion }, {
-      optionA,
-      optionB,
-      category,
-      title
-    });
+    const insertedQuestion = await Question.findOneAndUpdate(
+      { AuthorID: currentUser, _id: currentQuestion },
+      {
+        optionA,
+        optionB,
+        category,
+        title
+      }
+    );
     console.log(insertedQuestion);
     res.send(insertedQuestion);
   } catch (error) {
@@ -100,8 +95,6 @@ router.get("/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-
 
 //TODO: Check if anything missing -> If the ID is in the url it will show for both random and non-random
 router.post("/:id", async (req, res, next) => {
