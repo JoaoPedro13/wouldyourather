@@ -29,12 +29,8 @@ router.get("/top", async (req, res, next) => {
   }
 });
 
-<<<<<<< HEAD
-router.get("/post/random", async (req, res, next) => {
-=======
 
 router.get("/random", async (req, res, next) => {
->>>>>>> 202c7c002bcb4e3802613db2c07c6d3b03ee35bb
   try {
     //const count = await Question.countDocuments().exec();
     const retrievedQuestions = await Question.find({
