@@ -17,7 +17,6 @@ export const Icon = (props) => {
     <div className="icon">
 
 
-      {console.log(props.category)}
       <i className={"fas fa-" + categoryToIconName(props.category)}></i>
     </div>
   )

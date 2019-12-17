@@ -14,7 +14,6 @@ export class TopQuestions extends Component {
     try {
 
       const retrievedTopQuestions = await getTopQuestions();
-      console.log(retrievedTopQuestions.data);
       this.setState({ topList: retrievedTopQuestions.data });
 
     } catch (error) { console.log(error); }
@@ -31,7 +30,7 @@ export class TopQuestions extends Component {
       <Fragment>
         <h3>Most Popular Questions</h3>
         <ol>
-          {this.state.topList && this.state.topList.map(question => <Link to={"/post/" + question._id} > <li>{question.title}</li></Link>)}
+          {this.state.topList && this.state.topList.map(question => <Link key={question._id} to={"/post/" + question._id} > <li>{question.title}</li></Link>)}
         </ol>
       </Fragment >
     )
