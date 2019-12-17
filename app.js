@@ -43,7 +43,10 @@ app.use(basicAuthenticationDeserializer);
 app.use(bindUserToViewLocals);
 
 app.use("/auth", authenticationRouter);
-app.use("/", apiRouter);
+app.use("/post", apiRouter);
+app.use("/", (req, res, next) => {
+  res.sendFile("./client/public/index.html");
+});
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
