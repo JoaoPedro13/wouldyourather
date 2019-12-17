@@ -69,10 +69,9 @@ export class Profile extends Component {
         <ul>
           {this.state.questions &&
             this.state.questions.map(question => (
-              <li key={question._id}>
+              <Link to={`post/edit/${question._id}`}><li key={question._id}>
                 {question.title}
-                <Link to={`post/edit/${question._id}`}> Edit</Link>
-              </li>
+              </li> </Link>
             ))}
         </ul>
 

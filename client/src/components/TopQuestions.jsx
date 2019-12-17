@@ -12,7 +12,6 @@ export class TopQuestions extends Component {
   async getTop() {
     try {
       const retrievedTopQuestions = await getTopQuestions();
-      console.log(retrievedTopQuestions.data);
       this.setState({ topList: retrievedTopQuestions.data });
     } catch (error) {
       console.log(error);
