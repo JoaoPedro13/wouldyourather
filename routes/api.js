@@ -10,7 +10,7 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-router.get("/post/top", async (req, res, next) => {
+router.get("/top", async (req, res, next) => {
 
   try {
     const retrievedQuestions = await Question.find();
@@ -25,7 +25,7 @@ router.get("/post/top", async (req, res, next) => {
 });
 
 
-router.get("/post/random", async (req, res, next) => {
+router.get("/random", async (req, res, next) => {
   try {
     //const count = await Question.countDocuments().exec();
     const retrievedQuestions = await Question.find({
@@ -42,7 +42,7 @@ router.get("/post/random", async (req, res, next) => {
 });
 
 // CREATE QUESTION (ROUTEGUARDED)
-router.post("/post/create", routeGuard, async (req, res, next) => {
+router.post("/create", routeGuard, async (req, res, next) => {
   const { optionA, optionB, category, title } = req.body;
   const authorID = req.session.user;
   try {
@@ -60,7 +60,7 @@ router.post("/post/create", routeGuard, async (req, res, next) => {
   }
 });
 
-router.post("/post/edit/:id", routeGuard, async (req, res, next) => {
+router.post("/edit/:id", routeGuard, async (req, res, next) => {
   const { optionA, optionB, category, title } = req.body;
   const currentUser = req.session.user;
   const currentQuestion = req.params.id;
@@ -82,7 +82,7 @@ router.post("/post/edit/:id", routeGuard, async (req, res, next) => {
 });
 
 //GET QUESTION BY ID (falta ver se o user já respondeu a este ID)
-router.get("/post/:id", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   // console.log(req.params.id, "here");
   try {
     const retrievedQuestion = await Question.findById(req.params.id).populate(
@@ -99,7 +99,7 @@ router.get("/post/:id", async (req, res, next) => {
 
 
 //TODO: Check if anything missing -> If the ID is in the url it will show for both random and non-random
-router.post("/post/:id", async (req, res, next) => {
+router.post("/:id", async (req, res, next) => {
   // req.session.responded.push(req.params.id);
   req.session.responded = [...(req.session.responded || []), req.params.id];
   console.log(req.body.option, req.session);
@@ -127,7 +127,7 @@ router.post("/post/:id", async (req, res, next) => {
 
 // SHOW LIST OF N QUESTIONS
 
-/* router.get("/post/:num", async (req, res, next) => {
+/* router.get("/:num", async (req, res, next) => {
   const howManyDocs = Number.parseInt(req.params.num);
 
   try {
@@ -141,7 +141,7 @@ router.post("/post/:id", async (req, res, next) => {
  */
 //SHOW ALL QUESTIONS BY AUTHOR ID
 
-router.get("/post/byauthor/:id", async (req, res, next) => {
+router.get("/byauthor/:id", async (req, res, next) => {
   const authorID = req.params.id;
 
   try {
