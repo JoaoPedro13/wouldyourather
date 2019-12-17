@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from "react-router-dom"
 import { getQuestion } from "./../services/contentServices"
+import Chart from "./../components/Chart"
+import Share from '../components/Share';
+
 export class QuestionStats extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +16,7 @@ export class QuestionStats extends Component {
 
     try {
       const retrievedQuestion = await getQuestion(id);
-      console.log(retrievedQuestion);
+      //console.log(retrievedQuestion);
 
       this.setState({ currentQuestion: retrievedQuestion });
 
@@ -52,7 +55,17 @@ export class QuestionStats extends Component {
 
 
 
-        </Fragment>}
+          <Chart amountForA={this.state.currentQuestion.answers.filter(answer =>
+            answer.option === "A"
+
+
+          ).length} amountForB={this.state.currentQuestion.answers.filter(answer =>
+            answer.option === "B"
+
+
+          ).length} />
+        </Fragment >}
+        <Share id={this.props.match.params.questionId} />
 
         <Link to="/post/random">Another Question! </Link>
       </div>

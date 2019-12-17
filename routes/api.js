@@ -62,9 +62,13 @@ router.post("/post/create", routeGuard, async (req, res, next) => {
 
 router.post("/post/edit/:id", routeGuard, async (req, res, next) => {
   const { optionA, optionB, category, title } = req.body;
-  const id = req.params.id;
+  const currentUser = req.session.user;
+  const currentQuestion = req.params.id;
+
+
+
   try {
-    const insertedQuestion = await Question.findByIdAndUpdate(id, {
+    const insertedQuestion = await Question.findOneAndUpdate({ AuthorID: currentUser, _id: currentQuestion }, {
       optionA,
       optionB,
       category,
@@ -92,24 +96,7 @@ router.get("/post/:id", async (req, res, next) => {
   }
 });
 
-//POST ANSWER BY ID (falta ver se o user já respondeu a este ID)
-/* router.post("/post/postId=:id", async (req, res, next) => {
-    console.log(req.body);
-    try {
-      const insertedAnswer = await Answer.create({
-        questionID: req.params.id,
-        option: req.body.option
-      });
-      const relatedQuestion = await Question.findByIdAndUpdate(req.params.id, {
-        $push: { answers: insertedAnswer._id }
-      });
-      console.log(insertedAnswer, relatedQuestion);
-      
-      res.send(insertedAnswer);
-    } catch (error) {
-      next(error);
-    }
-  }); */
+
 
 //TODO: Check if anything missing -> If the ID is in the url it will show for both random and non-random
 router.post("/post/:id", async (req, res, next) => {

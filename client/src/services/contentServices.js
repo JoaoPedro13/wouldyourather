@@ -40,14 +40,15 @@ export const getQuestion = async id => {
   }
 };
 
-export const getAnswer = async (option, id) => {
+export const sendAnswer = async (option, id) => {
   const data = {
     option,
     id
   };
+  console.log(data);
   try {
     const response = await apiService.post(`/${id}`, data);
-    //console.log(response.data);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;

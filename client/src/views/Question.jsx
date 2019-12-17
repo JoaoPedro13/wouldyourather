@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from "react";
 import QuestionCard from "./../components/QuestionCard";
-import { getQuestion, getRandomQuestion } from "../services/contentServices";
+import { getQuestion, getRandomQuestion, sendAnswer } from "../services/contentServices";
 
 export class Question extends Component {
   constructor(props) {
@@ -9,6 +9,7 @@ export class Question extends Component {
       currentQuestion: null
     };
     this.callQuestion = this.callQuestion.bind(this);
+    this.handleAnswer = this.handleAnswer.bind(this);
   }
 
   async callQuestion() {
@@ -28,6 +29,18 @@ export class Question extends Component {
     }
   }
 
+  async handleAnswer(event) {
+    //console.log(event.target.attributes.value.value);
+    try {
+      const sentAnswer = await sendAnswer(event.target.attributes.value.value, this.state.currentQuestion._id);
+      //console.log(sentAnswer);
+    } catch (error) {
+      console.log(error);
+
+    }
+
+  }
+
   componentDidMount() {
     this.callQuestion();
   }
@@ -38,7 +51,7 @@ export class Question extends Component {
         <header>
           <h1>Would You Rather</h1>
         </header>
-        <QuestionCard questionToDisplay={this.state.currentQuestion} history={this.props.history} />
+        <QuestionCard questionToDisplay={this.state.currentQuestion} handleAnswer={this.handleAnswer} />
       </Fragment>
     );
   }

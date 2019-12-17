@@ -10,6 +10,7 @@ const Home = () => {
       <Link to="/post/top">Top Questions</Link>
       <Link to="/post/create">Create your own</Link>
       <TopQuestions />
+
     </div>
   );
 };

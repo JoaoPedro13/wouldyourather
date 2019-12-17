@@ -97,6 +97,7 @@ export class EditQuestion extends Component {
 
           <button>Update your dilema</button>
         </form>
+        <button>Delete this dilema</button>
         <QuestionStats match={this.props.match} />
       </div>
     );
