@@ -1,6 +1,9 @@
 import React, { Fragment, Component } from "react";
-import { Icon } from "./Icon"
-import { Link } from "react-router-dom";
+
+import { Icon } from "./Icon";
+import { getAnswer } from "../services/contentServices";
+import { Link, Redirect } from "react-router-dom"
+
 
 export class QuestionCard extends Component {
   constructor(props) {
