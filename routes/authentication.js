@@ -27,6 +27,7 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", imgUploader.single("image"), async (req, res, next) => {
+  console.log("req", req.body);
   const { name, email, password } = req.body;
   const picture = req.file
     ? req.file.url
@@ -37,6 +38,7 @@ router.post("/signup", imgUploader.single("image"), async (req, res, next) => {
     const newUser = await User.create({ name, passwordHash, email, picture });
     if (!newUser) throw new Error("Wrong email");
     req.session.user = newUser._id;
+    console.log("new user", newUser);
     res.json({ newUser });
   } catch (error) {
     next(error);
