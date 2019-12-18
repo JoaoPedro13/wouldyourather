@@ -24,11 +24,12 @@ export class Navbar extends Component {
             <Link to="/post/create">Create</Link>
           </Fragment>
         )) || (
-            <Fragment>
-              <Link to="/signup">Sign Up</Link>
-              <Link to="/login">Log In</Link>
-            </Fragment>
-          )}
+          <Fragment>
+            <Link to="/">Home</Link>
+            <Link to="/signup">Sign Up</Link>
+            <Link to="/login">Log In</Link>
+          </Fragment>
+        )}
       </nav>
     );
   }

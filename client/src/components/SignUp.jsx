@@ -25,8 +25,8 @@ export class SignUp extends Component {
     console.log(user);
     try {
       user = await signUp(user);
-      this.props.handleAuth(user);
-      this.props.history.push(`/`);
+      this.props.handleAuth(user.email);
+      this.props.history.push(`/profile`);
     } catch (error) {
       console.log(error);
     }

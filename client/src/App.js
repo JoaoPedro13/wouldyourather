@@ -47,8 +47,6 @@ export class App extends Component {
     return (
       <BrowserRouter>
         <Navbar user={this.state.user} handleAuth={this.changeAuthStatus} />
-        {/* <button onClick={logOut}>logout</button> */}
-
         <Switch>
           <Route exact path="/post/random" component={Question}></Route>
           <Route exact path="/post/create" component={CreateQuestion}></Route>

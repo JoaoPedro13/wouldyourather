@@ -18,6 +18,7 @@ export class Login extends Component {
 
   formHandler = async e => {
     e.preventDefault();
+    \;
     const user = this.state;
     //console.log(user);
     try {
