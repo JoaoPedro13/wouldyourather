@@ -103,7 +103,7 @@ router.post("/delete/:id", routeGuard, async (req, res, next) => {
   }
 });
 
-//GET QUESTION BY ID (falta ver se o user já respondeu a este ID)
+//GET QUESTION BY ID
 router.get("/:id", async (req, res, next) => {
   // console.log(req.params.id, "here");
   try {

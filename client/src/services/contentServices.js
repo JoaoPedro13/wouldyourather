@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiService = axios.create({
-  baseURL: "/post"
+  baseURL: "/api"
 });
 
 export const getRandomQuestion = async () => {

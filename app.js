@@ -43,7 +43,7 @@ app.use(basicAuthenticationDeserializer);
 app.use(bindUserToViewLocals);
 
 app.use("/auth", authenticationRouter);
-app.use("/post", apiRouter);
+app.use("/api", apiRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(join(__dirname, "client/build/index.html"));
