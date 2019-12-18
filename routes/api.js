@@ -81,6 +81,27 @@ router.post("/edit/:id", routeGuard, async (req, res, next) => {
   }
 });
 
+//DELETE QUESTIONS with respective answers
+router.post("/delete/:id", routeGuard, async (req, res, next) => {
+  const currentUser = req.session.user;
+  const currentQuestion = req.params.id;
+
+  try {
+    const removedQuestion = await Question.findOneAndDelete({
+      AuthorID: currentUser,
+      _id: currentQuestion
+    });
+    const removedAnswers = await Answer.remove({
+      questionID: currentQuestion
+    });
+    console.log(removedQuestion);
+    console.log(removedAnswers);
+    res.send(removedQuestion);
+  } catch (error) {
+    next(error);
+  }
+});
+
 //GET QUESTION BY ID (falta ver se o user já respondeu a este ID)
 router.get("/:id", async (req, res, next) => {
   // console.log(req.params.id, "here");

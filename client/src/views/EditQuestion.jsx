@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { editQuestion as edit } from "../services/contentServices";
-import { getQuestion } from "../services/contentServices";
+import {
+  getQuestion,
+  deleteQuestionAndAnswers
+} from "../services/contentServices";
 import QuestionStats from "./QuestionStats";
 
 export class EditQuestion extends Component {
@@ -19,12 +22,6 @@ export class EditQuestion extends Component {
     this.callQuestion();
   }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
-
   async callQuestion() {
     const id = this.props.match.params.questionId;
     console.log("oi");
@@ -39,6 +36,21 @@ export class EditQuestion extends Component {
       id
     });
   }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleDelete = async () => {
+    try {
+      await deleteQuestionAndAnswers(this.state.id);
+      this.props.history.push(`/profile`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   formHandler = async e => {
     e.preventDefault();
@@ -97,7 +109,7 @@ export class EditQuestion extends Component {
 
           <button>Update your dilema</button>
         </form>
-        <button>Delete this dilema</button>
+        <button onClick={this.handleDelete}>Delete this dilema</button>
         <QuestionStats match={this.props.match} />
       </div>
     );

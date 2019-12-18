@@ -63,6 +63,7 @@ export const getAuthorQuestions = async authorID => {
     throw error;
   }
 };
+
 export const getTopQuestions = async () => {
   try {
     const retrievedQuestions = await apiService.get("/top");
@@ -73,3 +74,12 @@ export const getTopQuestions = async () => {
   }
 };
 
+export const deleteQuestionAndAnswers = async id => {
+  try {
+    const retrievedQuestions = await apiService.post("/delete/" + id);
+
+    return retrievedQuestions;
+  } catch (error) {
+    throw error;
+  }
+};

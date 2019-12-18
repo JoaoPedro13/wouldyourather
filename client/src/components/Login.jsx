@@ -18,13 +18,12 @@ export class Login extends Component {
 
   formHandler = async e => {
     e.preventDefault();
-    \;
     const user = this.state;
     //console.log(user);
     try {
       await login(user);
       this.props.handleAuth(user.email);
-      this.props.history.push(`/`);
+      this.props.history.push(`/profile`);
     } catch (error) {
       console.log(error);
     }
