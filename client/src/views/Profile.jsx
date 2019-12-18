@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { edit, userInformation } from "./../services/authServices";
+import { edit } from "./../services/authServices";
 import { getAuthorQuestions } from "./../services/contentServices";
 import { Link } from "react-router-dom";
 
@@ -8,21 +8,17 @@ export class Profile extends Component {
     super(props);
     this.state = {
       user: null
+
     };
   }
 
+
+
   async componentDidMount() {
-    if (!this.state.user) {
-      try {
-        const verifiedUser = await userInformation();
-        this.setState({ user: verifiedUser });
-        const userQuestions = await getAuthorQuestions(this.state.user._id);
-        this.setState({ questions: userQuestions });
-      } catch (error) {
-        console.log(error);
-        this.setState({ user: null });
-      }
-    }
+    this.setState({ user: this.props.user });
+    const questionsFromAPI = await getAuthorQuestions(this.props.user._id);
+    this.setState({ questions: questionsFromAPI });
+
   }
 
   handleChange = event => {
@@ -69,7 +65,7 @@ export class Profile extends Component {
         <ul>
           {this.state.questions &&
             this.state.questions.map(question => (
-              <Link to={`post/edit/${question._id}`}><li key={question._id}>
+              <Link key={question._id} to={`post/edit/${question._id}`}><li >
                 {question.title}
               </li> </Link>
             ))}
