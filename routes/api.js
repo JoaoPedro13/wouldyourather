@@ -11,7 +11,6 @@ function randomNumber(min, max) {
 }
 
 router.get("/top", async (req, res, next) => {
-
   try {
     const retrievedQuestions = await Question.find();
     const sortedQuestions = retrievedQuestions.sort((questionA, questionB) =>
@@ -24,7 +23,6 @@ router.get("/top", async (req, res, next) => {
     next(error);
   }
 });
-
 
 router.get("/random", async (req, res, next) => {
   try {
@@ -66,15 +64,16 @@ router.post("/edit/:id", routeGuard, async (req, res, next) => {
   const currentUser = req.session.user;
   const currentQuestion = req.params.id;
 
-
-
   try {
-    const insertedQuestion = await Question.findOneAndUpdate({ AuthorID: currentUser, _id: currentQuestion }, {
-      optionA,
-      optionB,
-      category,
-      title
-    });
+    const insertedQuestion = await Question.findOneAndUpdate(
+      { AuthorID: currentUser, _id: currentQuestion },
+      {
+        optionA,
+        optionB,
+        category,
+        title
+      }
+    );
     console.log(insertedQuestion);
     res.send(insertedQuestion);
   } catch (error) {
@@ -96,8 +95,6 @@ router.get("/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-
 
 //TODO: Check if anything missing -> If the ID is in the url it will show for both random and non-random
 router.post("/:id", async (req, res, next) => {
