@@ -41,3 +41,78 @@
   font-size: 48px;
   
 }
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity .8s ease-in;
+}
+
+.display-3 {
+color: rgb(255, 255, 255);
+  font-family: 'IM Fell Great Primer', serif;
+  text-align: left;
+  margin-bottom:0;
+
+
+
+
+}
+
+.jumbotron {
+  background-image: url(./nespera.png);
+background-repeat: no-repeat;
+background-position: center;
+
+background-repeat: repeat;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+background-color: rgba(66, 85, 69, 0.753);
+background-blend-mode: difference;
+padding: 0 5%;
+margin:2%;
+text-justify: center;
+border: solid 2px;
+}
+
+.overjumbo {
+  
+ 
+ margin: 0;
+ background-blend-mode:difference;
+ border-bottom-left-radius: 10%;
+ border-bottom-right-radius: 10%;
+ padding: 3px;
+ display: flex;
+ align-items: center;
+
+}
+
+.lead {
+  color: whitesmoke;
+  font-weight: normal;
+  padding: 1%;
+  
+
+}
+
+.btnmenu {
+  display: flex;
+  margin-bottom: 3%;
+}
+.menubtn {
+  background-color: rgb(184, 161, 149);
+  margin: 2%;
+  border: solid 2px;
+  box-shadow: 3px 3px ;
+  height: fit-content;
+  max-width:106px;
+  font-size: 80%;
+  font-weight: bold
+  
+  
+}

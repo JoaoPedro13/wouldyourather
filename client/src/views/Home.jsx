@@ -1,17 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TopQuestions from "../components/TopQuestions";
+import logo from "./../nespera.png"
+
+
 
 const Home = () => {
+
   return (
-    <div>
-      <h1>Home View!</h1>
-      <Link to="/post/random">Random Question</Link>
+    <div className="col mx-auto">
 
-      <Link to="/post/create">Create your own</Link>
+
+      <div class="jumbotron" >
+        <h1 class="display-3">Would <br />You<br /> Rather?</h1>
+
+        <div className="d-flex justify-content-around align-middle overjumbo">
+
+          <div className="btnmenu">
+
+            <a className="btn btn-outline-dark menubtn" href="#" role="button">Random Dilema</a>
+            <a className="btn btn-outline-dark menubtn " href="#" role="button">Create New</a>
+
+          </div>
+
+
+        </div>
+      </div>
+
       <TopQuestions />
-
-    </div>
+      <p>  <i>"Life is the art of choice"</i>   </p>
+    </div >
   );
 };
 
