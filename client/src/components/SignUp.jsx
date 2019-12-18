@@ -22,10 +22,12 @@ export class SignUp extends Component {
   formHandler = async e => {
     e.preventDefault();
     let user = this.state;
-    console.log(user);
+
     try {
       user = await signUp(user);
-      this.props.handleAuth(user.email);
+      console.log(user);
+
+      this.props.handleAuth(user);
       this.props.history.push(`/profile`);
     } catch (error) {
       console.log(error);

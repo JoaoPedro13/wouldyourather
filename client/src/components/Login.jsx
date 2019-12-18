@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { login } from "../services/authServices";
+import { Link } from "react-router-dom";
 
 export class Login extends Component {
   constructor(props) {
@@ -18,13 +19,13 @@ export class Login extends Component {
 
   formHandler = async e => {
     e.preventDefault();
-    \;
-    const user = this.state;
+
+    const insertedLogin = this.state;
     //console.log(user);
     try {
-      await login(user);
-      this.props.handleAuth(user.email);
-      this.props.history.push(`/`);
+      const user = await login(insertedLogin);
+      this.props.handleAuth(user);
+      this.props.history.push(`/profile`);
     } catch (error) {
       console.log(error);
     }
@@ -51,6 +52,7 @@ export class Login extends Component {
           />
           <button>Log In</button>
         </form>
+        <p>or <Link to="/signup">Sign-up</Link></p>
       </div>
     );
   }

@@ -25,7 +25,8 @@ export const login = async data => {
 export const signUp = async data => {
   try {
     const response = await apiAuthenticationService.post(`/signup`, data);
-    return response.data.user;
+    console.log("asdasd", response.data.newUser);
+    return response.data.newUser;
   } catch (error) {
     throw error;
   }

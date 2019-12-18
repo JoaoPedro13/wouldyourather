@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import "./App.css";
 
@@ -25,7 +25,7 @@ export class App extends Component {
     this.changeAuthStatus = this.changeAuthStatus.bind(this);
   }
 
-  async componentDidUpdate() {
+  async componentDidMount() {
     if (!this.state.user) {
       try {
         const verifiedUser = await userInformation();
@@ -50,7 +50,7 @@ export class App extends Component {
         <Navbar user={this.state.user} handleAuth={this.changeAuthStatus} />
         <Switch>
           <Route exact path="/post/random" component={Question}></Route>
-          <Route exact path="/post/create" component={CreateQuestion}></Route>
+          <Route path="/post/create" render={props => (this.state.user ? (<CreateQuestion {...props} />) : (<Redirect to="/login" />))} />
           <Route
             path={`/post/edit/:questionId`}
             component={EditQuestion}
@@ -74,7 +74,7 @@ export class App extends Component {
             )}
           />
 
-          <Route path="/profile" render={props => <Profile {...props} />} />
+          <Route path="/profile" render={props => (this.state.user ? (<Profile {...props} user={this.state.user} />) : (<Redirect to="/login" />))} />
 
           <Route path="/" component={Home} />
         </Switch>
