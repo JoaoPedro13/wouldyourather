@@ -25,10 +25,11 @@ export class App extends Component {
     this.changeAuthStatus = this.changeAuthStatus.bind(this);
   }
 
-  async componentDidMount() {
+  async componentDidUpdate() {
     if (!this.state.user) {
       try {
         const verifiedUser = await userInformation();
+        console.log(verifiedUser);
         this.setState({ user: verifiedUser });
       } catch (error) {
         console.log(error);
