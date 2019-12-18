@@ -88,16 +88,17 @@ router.post("/delete/:id", routeGuard, async (req, res, next) => {
 
   try {
     const removedQuestion = await Question.findOneAndDelete({
-      AuthorID: currentUser,
+      authorID: currentUser,
       _id: currentQuestion
     });
     const removedAnswers = await Answer.remove({
       questionID: currentQuestion
     });
-    console.log(removedQuestion);
-    console.log(removedAnswers);
+    console.log("Question----->", removedQuestion);
+    console.log("answers----->", removedAnswers);
     res.send(removedQuestion);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });

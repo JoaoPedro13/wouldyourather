@@ -44,7 +44,6 @@ router.post("/signup", imgUploader.single("image"), async (req, res, next) => {
     next(error);
   }
 });
-//TODO: finish this
 
 router.post("/edituser", async (req, res, next) => {
   const { name, picture } = req.body;
