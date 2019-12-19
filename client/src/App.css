@@ -3,24 +3,16 @@
   background-color: black;
 }
 
-
-
-
-
-
 h3 {
-  font-family: 'IM Fell Great Primer', serif;
-
+  font-family: "IM Fell Great Primer", serif;
 }
 
-
 body {
-  background-color:ivory;
+  background-color: ivory;
 }
 
 .icon {
   font-size: 48px;
-  
 }
 
 .example-appear {
@@ -29,56 +21,47 @@ body {
 
 .example-appear.example-appear-active {
   opacity: 1;
-  transition: opacity .8s ease-in;
+  transition: opacity 0.8s ease-in;
 }
 
 .display-3 {
-color: rgb(255, 255, 255);
-  font-family: 'IM Fell Great Primer', serif;
+  color: rgb(255, 255, 255);
+  font-family: "IM Fell Great Primer", serif;
   text-align: justify;
-  margin-bottom:0;
-
-
-
-
+  margin-bottom: 0;
 }
 
 .jumbotron {
   background-image: url(./nespera.png);
-background-repeat: no-repeat;
-background-position: center;
+  background-repeat: no-repeat;
+  background-position: center;
 
-background-repeat: repeat;
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-background-color: rgba(66, 85, 69, 0.753);
-background-blend-mode: difference;
-padding: 0 5%;
-margin:0 2%;
-text-justify: center;
-border: solid 2px;
+  background-repeat: repeat;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgba(66, 85, 69, 0.753);
+  background-blend-mode: difference;
+  padding: 0 5%;
+  margin: 0 2%;
+  text-justify: center;
+  border: solid 2px;
 }
 
 .overjumbo {
-  
- 
- margin: 0;
- background-blend-mode:difference;
- border-bottom-left-radius: 10%;
- border-bottom-right-radius: 10%;
- padding: 3px;
- display: flex;
- align-items: center;
-
+  margin: 0;
+  background-blend-mode: difference;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+  padding: 3px;
+  display: flex;
+  align-items: center;
 }
 
 .lead {
   color: whitesmoke;
   font-weight: normal;
   padding: 1%;
-  
-
 }
 
 .btnmenu {
@@ -89,40 +72,44 @@ border: solid 2px;
   background-color: rgb(228, 206, 195);
   margin: 2%;
   border: solid 2px;
-  box-shadow: 3px 3px ;
+  box-shadow: 3px 3px;
   height: fit-content;
-  max-width:106px;
+  max-width: 95px;
   font-size: 90%;
-  font-family: 'IM Fell Great Primer', serif;
-
-  
+  font-family: "IM Fell Great Primer", serif;
 }
 
 .tagline {
-  
-  
-  
- display: block;
-  
-font-variant: small-caps;
-margin: 0 auto;
-text-align: center;
+  display: block;
+
+  font-variant: small-caps;
+  margin: 0 auto;
+  text-align: center;
 }
 
 nav a {
   font-variant: small-caps;
   color: black;
-  
-  
 }
 
 nav {
   display: flex;
   justify-content: space-around;
   vertical-align: bottom;
-  margin: 0;
+  margin: 0.4em 0;
 }
 
 .topquestions {
   margin: 3%;
+}
+
+.forms {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.signinLink {
+  margin-top: 0.5em;
+  margin-left: -8em;
 }

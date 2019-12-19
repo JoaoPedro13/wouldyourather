@@ -65,10 +65,10 @@ export class CreateQuestion extends Component {
             <option value="" disabled>
               Select a category
             </option>
-            <option>heart</option>
-            <option>football</option>
-            <option>wrench</option>
-            <option>dolar</option>
+            <option value="heart">Love</option>
+            <option value="football">Sports</option>
+            <option value="wrench">Work</option>
+            <option value="dolar">Money</option>
           </select>
 
           <button>Create a dilema</button>

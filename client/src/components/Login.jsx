@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { login } from "../services/authServices";
 import { Link } from "react-router-dom";
 
@@ -33,27 +33,50 @@ export class Login extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.formHandler}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            onChange={this.handleChange}
-          />
-
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={this.handleChange}
-          />
-          <button>Log In</button>
-        </form>
-        <p>or <Link to="/signup">Sign-up</Link></p>
-      </div>
+      <Fragment>
+        <div className="container forms">
+          <form onSubmit={this.formHandler}>
+            <div className="form-row ">
+              <div className="col-auto">
+                <label className="sr-only" htmlFor="inlineFormInput">
+                  Email
+                </label>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  onChange={this.handleChange}
+                  placeholder="Email"
+                  className="form-control mb-2 mr-sm-2"
+                  id="inlineFormInputName2"
+                />
+              </div>
+              <div className="col-auto">
+                <label className="sr-only" htmlFor="inlineFormInput">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  onChange={this.handleChange}
+                  placeholder="Password"
+                  className="form-control mb-2 mr-sm-2"
+                  id="inlineFormInputName2"
+                />
+              </div>
+              <div className="col-auto">
+                <button className="btn btn-outline-dark">Log In</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="container d-flex justify-content-center signinLink">
+          <p>
+            or <Link to="/signup">Sign-up</Link>
+          </p>
+        </div>
+      </Fragment>
     );
   }
 }
