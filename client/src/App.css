@@ -113,3 +113,10 @@ nav {
   margin-top: 0.5em;
   margin-left: -8em;
 }
+
+.createQuestion-form {
+  margin-top: 1.5em;
+}
+.edit-buttons {
+  margin-bottom: 1em;
+}
