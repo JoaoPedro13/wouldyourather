@@ -43,7 +43,6 @@ export class CreateQuestion extends Component {
               name="title"
               onChange={this.handleChange}
               className="form-control mb-2 mr-sm-2"
-              id="inlineFormInputName2"
             />
           </div>
           <div className="col-auto">
@@ -56,7 +55,6 @@ export class CreateQuestion extends Component {
               name="optionA"
               onChange={this.handleChange}
               className="form-control mb-2 mr-sm-2"
-              id="inlineFormInputName2"
             />
           </div>
           <div className="col-auto">
@@ -69,13 +67,12 @@ export class CreateQuestion extends Component {
               name="optionB"
               onChange={this.handleChange}
               className="form-control mb-2 mr-sm-2"
-              id="inlineFormInputName2"
             />
           </div>
           <div className="col-auto">
             <div className="input-group mb-3">
               <div className="input-group-prepend">
-                <label className="input-group-text" for="inputGroupSelect01">
+                <label className="input-group-text" htmlFor="inputGroupSelect01">
                   category
                 </label>
               </div>
@@ -84,7 +81,6 @@ export class CreateQuestion extends Component {
                 onChange={this.handleChange}
                 value={this.state.category}
                 className="custom-select"
-                id="inputGroupSelect01"
               >
                 <option value="" disabled>
                   Select one...

@@ -28,7 +28,9 @@ export class QuestionStats extends Component {
   }
 
   componentDidMount() {
-    const questionId = this.props.match.params.questionId;
+
+    this.setState({ currentQuestion: this.props.questionToDisplay })
+    const questionId = this.state.currentQuestion._id;
     this.callQuestion(questionId);
 
 
@@ -80,7 +82,7 @@ export class QuestionStats extends Component {
 
             ).length} />
           </Fragment >}
-          <Share id={this.props.match.params.questionId} />
+
 
           <Link to="/post/random">Another Question! </Link>
         </div>

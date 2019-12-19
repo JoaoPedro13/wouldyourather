@@ -51,7 +51,7 @@ export class SignUp extends Component {
                   onChange={this.handleChange}
                   placeholder="Name"
                   className="form-control mb-2 mr-sm-2"
-                  id="inlineFormInputName2"
+
                 />
               </div>
               <div className="col-auto">
@@ -65,7 +65,7 @@ export class SignUp extends Component {
                   onChange={this.handleChange}
                   placeholder="Email"
                   className="form-control mb-2 mr-sm-2"
-                  id="inlineFormInputName2"
+
                 />
               </div>
               <div className="col-auto">
@@ -79,12 +79,12 @@ export class SignUp extends Component {
                   onChange={this.handleChange}
                   placeholder="Password"
                   className="form-control mb-2 mr-sm-2"
-                  id="inlineFormInputName2"
+
                 />
               </div>
-              <div className="col-auto">
-                <button className="btn btn-outline-dark">Sign Up</button>
-              </div>
+            </div>
+            <div className="col-auto">
+              <button className="btn btn-outline-dark">Sign Up</button>
             </div>
           </form>
         </div>

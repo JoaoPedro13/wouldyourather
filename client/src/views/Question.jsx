@@ -1,12 +1,13 @@
 import React, { Fragment, Component } from "react";
 import QuestionCard from "./../components/QuestionCard";
 import { getQuestion, getRandomQuestion, sendAnswer } from "../services/contentServices";
+import QuestionStats from "./../components/QuestionStatsComponent"
 
 export class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentQuestion: null
+      currentQuestion: null, userAnswered: false
     };
     this.callQuestion = this.callQuestion.bind(this);
     this.handleAnswer = this.handleAnswer.bind(this);
@@ -33,6 +34,7 @@ export class Question extends Component {
     //console.log(event.target.attributes.value.value);
     try {
       const sentAnswer = await sendAnswer(event.target.attributes.value.value, this.state.currentQuestion._id);
+      this.setState({ userAnswered: true })
       //console.log(sentAnswer);
     } catch (error) {
       console.log(error);
@@ -49,7 +51,10 @@ export class Question extends Component {
     return (
 
 
-      <QuestionCard questionToDisplay={this.state.currentQuestion} handleAnswer={this.handleAnswer} />
+      <Fragment>
+        <QuestionCard questionToDisplay={this.state.currentQuestion} handleAnswer={this.handleAnswer} />
+        {this.state.userAnswered && <QuestionStats questionToDisplay={this.state.currentQuestion} />}
+      </Fragment>
 
     );
   }

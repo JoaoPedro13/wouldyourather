@@ -6,8 +6,8 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
 
 const Home = () => {
   return (
-    <div className="col">
-      <div className="jumbotron jumbotronhome">
+    <div className="container">
+      <div className="jumbotron jumbotronhome col-auto">
         <h1 className="display-3">
           Would <br />
           You

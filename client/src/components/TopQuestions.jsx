@@ -33,14 +33,16 @@ export class TopQuestions extends Component {
 
         <h3>Most Popular</h3>
 
-        <ol>
+        <ul className="list-group">
           {this.state.topList &&
             this.state.topList.map(question => (
-              <Link key={question._id} to={"/post/" + question._id}>
-                <li>{question.title}</li>
+              <Link className={"list-group-item "} key={question._id} to={"/post/" + question._id}>
+                <li className={"d-flex justify-content-between align-items-center"}>{question.title}
+                  <span class="badge badge-primary badge-pill">{question.answers.length}</span>
+                </li>
               </Link>
             ))}
-        </ol>
+        </ul>
 
 
 
