@@ -27,11 +27,10 @@ body {
   margin-bottom: 0;
 }
 .display-5 {
-  margin-top:8%;
+  margin-top: 8%;
   color: rgb(255, 255, 255);
   font-family: "IM Fell Great Primer", serif;
   text-align: center;
-  
 }
 
 .jumbotron {
@@ -49,16 +48,18 @@ body {
   margin: 0 2%;
   text-justify: center;
   border: solid 2px;
+  border-radius: 0.3em;
   min-height: 22em;
 }
 .jumbotronquestion {
   background-image: url(./nespera.png);
   background-repeat: no-repeat;
   background-position: center;
+  border-radius: 0.3em;
 
   background-repeat: repeat;
   display: flex;
-  
+
   flex-direction: column;
   align-items: center;
   background-color: rgba(66, 85, 69, 0.753);
@@ -71,7 +72,7 @@ body {
 
 .overjumbo {
   margin: 0;
-  
+
   padding: 3px;
   display: flex;
   align-items: center;
@@ -92,10 +93,7 @@ body {
   display: flex;
   margin-bottom: 3%;
   flex-direction: column;
-  
 }
-
-
 
 .menubtn {
   background-color: rgb(235, 224, 219);
@@ -118,16 +116,9 @@ body {
   font-family: "IM Fell Great Primer", serif;
 }
 
-
-
-
-
-
-
-
-
-
-
+.editQuestion-title {
+  margin-top: 1em;
+}
 
 .tagline {
   display: block;

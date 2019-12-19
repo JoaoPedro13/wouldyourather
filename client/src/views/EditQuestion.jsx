@@ -67,8 +67,8 @@ export class EditQuestion extends Component {
   render() {
     return (
       <div className="container">
+        <h2 className="col-auto editQuestion-title">Edit your Question</h2>
         <div>
-          <h2>Edit your Question</h2>
           <form onSubmit={this.formHandler} className="createQuestion-form">
             <div className="col-auto">
               <label className="sr-only" htmlFor="inlineFormInput">
@@ -112,7 +112,10 @@ export class EditQuestion extends Component {
             <div className="col-auto">
               <div className="input-group mb-3">
                 <div className="input-group-prepend">
-                  <label className="input-group-text" for="inputGroupSelect01">
+                  <label
+                    className="input-group-text"
+                    htmlFor="inputGroupSelect01"
+                  >
                     category
                   </label>
                 </div>
