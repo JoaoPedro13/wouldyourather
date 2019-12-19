@@ -1,40 +1,21 @@
 .App {
   text-align: center;
+  background-color: black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+
+
+
+
+h3 {
+  font-family: 'IM Fell Great Primer', serif;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  background-color:ivory;
 }
 
 .icon {
@@ -54,7 +35,7 @@
 .display-3 {
 color: rgb(255, 255, 255);
   font-family: 'IM Fell Great Primer', serif;
-  text-align: left;
+  text-align: justify;
   margin-bottom:0;
 
 
@@ -74,7 +55,7 @@ flex-wrap: wrap;
 background-color: rgba(66, 85, 69, 0.753);
 background-blend-mode: difference;
 padding: 0 5%;
-margin:2%;
+margin:0 2%;
 text-justify: center;
 border: solid 2px;
 }
@@ -105,14 +86,43 @@ border: solid 2px;
   margin-bottom: 3%;
 }
 .menubtn {
-  background-color: rgb(184, 161, 149);
+  background-color: rgb(228, 206, 195);
   margin: 2%;
   border: solid 2px;
   box-shadow: 3px 3px ;
   height: fit-content;
   max-width:106px;
-  font-size: 80%;
-  font-weight: bold
+  font-size: 90%;
+  font-family: 'IM Fell Great Primer', serif;
+
+  
+}
+
+.tagline {
   
   
+  
+ display: block;
+  
+font-variant: small-caps;
+margin: 0 auto;
+text-align: center;
+}
+
+nav a {
+  font-variant: small-caps;
+  color: black;
+  
+  
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  vertical-align: bottom;
+  margin: 0;
+}
+
+.topquestions {
+  margin: 3%;
 }

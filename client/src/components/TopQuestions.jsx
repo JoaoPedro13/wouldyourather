@@ -26,32 +26,27 @@ export class TopQuestions extends Component {
 
   render() {
     return (
-      <Fragment>
-
-
-        <ReactCSSTransitionGroup
-          transitionName="example"
-          transitionAppear={true}
-          transitionAppearTimeout={500}
-          transitionEnter={false}
-          transitionLeave={false}>
-
-          <h3>Most Popular Questions</h3>
-
-          <ol>
-            {this.state.topList &&
-              this.state.topList.map(question => (
-                <Link key={question._id} to={"/post/" + question._id}>
-                  <li>{question.title}</li>
-                </Link>
-              ))}
-          </ol>
-
-        </ReactCSSTransitionGroup>
+      <div className="topquestions">
 
 
 
-      </Fragment>
+
+        <h3>Most Popular</h3>
+
+        <ol>
+          {this.state.topList &&
+            this.state.topList.map(question => (
+              <Link key={question._id} to={"/post/" + question._id}>
+                <li>{question.title}</li>
+              </Link>
+            ))}
+        </ol>
+
+
+
+
+
+      </div>
     );
   }
 }
