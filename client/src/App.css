@@ -11,10 +11,6 @@ body {
   background-color: ivory;
 }
 
-.icon {
-  font-size: 48px;
-}
-
 .example-appear {
   opacity: 0.01;
 }
@@ -29,6 +25,13 @@ body {
   font-family: "IM Fell Great Primer", serif;
   text-align: justify;
   margin-bottom: 0;
+}
+.display-5 {
+  margin-top:8%;
+  color: rgb(255, 255, 255);
+  font-family: "IM Fell Great Primer", serif;
+  text-align: center;
+  
 }
 
 .jumbotron {
@@ -46,13 +49,29 @@ body {
   margin: 0 2%;
   text-justify: center;
   border: solid 2px;
+  min-height: 22em;
+}
+.jumbotronquestion {
+  background-image: url(./nespera.png);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  background-repeat: repeat;
+  display: flex;
+  
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(66, 85, 69, 0.753);
+  background-blend-mode: difference;
+  padding: 0 5%;
+  margin: 0 2%;
+  border: solid 2px;
+  min-height: 22em;
 }
 
 .overjumbo {
   margin: 0;
-  background-blend-mode: difference;
-  border-bottom-left-radius: 10%;
-  border-bottom-right-radius: 10%;
+  
   padding: 3px;
   display: flex;
   align-items: center;
@@ -68,8 +87,18 @@ body {
   display: flex;
   margin-bottom: 3%;
 }
+
+.btngroupquestion {
+  display: flex;
+  margin-bottom: 3%;
+  flex-direction: column;
+  
+}
+
+
+
 .menubtn {
-  background-color: rgb(228, 206, 195);
+  background-color: rgb(235, 224, 219);
   margin: 2%;
   border: solid 2px;
   box-shadow: 3px 3px;
@@ -78,6 +107,27 @@ body {
   font-size: 90%;
   font-family: "IM Fell Great Primer", serif;
 }
+
+.btnquestion {
+  background-color: rgb(235, 224, 219);
+  margin: 2%;
+  border: solid 2px;
+  box-shadow: 3px 3px;
+  height: fit-content;
+  font-size: 90%;
+  font-family: "IM Fell Great Primer", serif;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .tagline {
   display: block;

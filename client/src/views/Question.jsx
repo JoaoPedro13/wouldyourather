@@ -47,12 +47,10 @@ export class Question extends Component {
 
   render() {
     return (
-      <Fragment>
-        <header>
-          <h1>Would You Rather</h1>
-        </header>
-        <QuestionCard questionToDisplay={this.state.currentQuestion} handleAnswer={this.handleAnswer} />
-      </Fragment>
+
+
+      <QuestionCard questionToDisplay={this.state.currentQuestion} handleAnswer={this.handleAnswer} />
+
     );
   }
 }
