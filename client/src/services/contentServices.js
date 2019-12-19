@@ -14,6 +14,7 @@ export const getRandomQuestion = async () => {
 };
 
 export const createQuestion = async data => {
+  console.log("here");
   try {
     const response = await apiService.post("/create", data);
     return response.data;

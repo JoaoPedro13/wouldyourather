@@ -7,8 +7,8 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
 const Home = () => {
   return (
     <div className="col">
-      <div class="jumbotron">
-        <h1 class="display-3">
+      <div className="jumbotron">
+        <h1 className="display-3">
           Would <br />
           You
           <br /> Rather?
