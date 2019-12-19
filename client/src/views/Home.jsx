@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import TopQuestions from "../components/TopQuestions";
 import logo from "./../nespera.png"
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 
 
 const Home = () => {
 
   return (
-    <div className="col mx-auto">
+    < div className="col">
 
 
       <div class="jumbotron" >
@@ -16,19 +17,30 @@ const Home = () => {
 
         <div className="d-flex justify-content-around align-middle overjumbo">
 
-          <div className="btnmenu">
+          <ReactCSSTransitionGroup
+            transitionName="example"
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            transitionEnter={false}
+            transitionLeave={true}>
 
-            <a className="btn btn-outline-dark menubtn" href="#" role="button">Random Dilema</a>
-            <a className="btn btn-outline-dark menubtn " href="#" role="button">Create New</a>
+            <div className="btnmenu">
 
-          </div>
+              <a className="btn btn-outline-dark menubtn" href="#" role="button">Random Dilema</a>
+              <a className="btn btn-outline-dark menubtn " href="#" role="button">Create New</a>
+
+            </div>
+
+
+
+          </ReactCSSTransitionGroup>
 
 
         </div>
       </div>
 
       <TopQuestions />
-      <p>  <i>"Life is the art of choice"</i>   </p>
+      <p className="tagline">"Life is the art of choice"</p>
     </div >
   );
 };
