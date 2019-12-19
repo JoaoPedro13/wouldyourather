@@ -31,7 +31,7 @@ router.post("/signup", imgUploader.single("image"), async (req, res, next) => {
   const { name, email, password } = req.body;
   const picture = req.file
     ? req.file.url
-    : "https://res.cloudinary.com/db1i5vxr8/image/upload/v1575997473/sample.jpg";
+    : "https://res.cloudinary.com/db1i5vxr8/image/upload/v1575997473/profile.png";
   try {
     const passwordHash = await bcryptjs.hash(password, 10);
     if (!passwordHash) throw new Error("Wrong Password");

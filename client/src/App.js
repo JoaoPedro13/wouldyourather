@@ -32,7 +32,6 @@ export class App extends Component {
     if (!this.state.user) {
       try {
         const verifiedUser = await userInformation();
-        console.log(verifiedUser);
         this.setState({ user: verifiedUser });
       } catch (error) {
         console.log(error);
@@ -64,6 +63,7 @@ export class App extends Component {
           ></Route>
 
           <Route path="/post/:questionId" component={Question}></Route>
+
           <Route
             path="/login"
             render={props => (

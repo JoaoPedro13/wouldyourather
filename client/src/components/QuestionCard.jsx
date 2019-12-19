@@ -4,6 +4,8 @@ import { Icon } from "./Icon";
 import { getAnswer, getQuestion } from "../services/contentServices";
 import { Link, Redirect } from "react-router-dom";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
+import { QuestionStats } from "./../views/QuestionStats"
+
 
 export class QuestionCard extends Component {
   constructor(props) {
@@ -32,14 +34,14 @@ export class QuestionCard extends Component {
     return (
       <div className="container-fluid">
         {this.props.questionToDisplay && (
-          <Fragment>
+          <div className="col-auto">
             <div
-              class="jumbotron jumbotronquestion"
+              className="jumbotron jumbotronquestion"
               style={{
                 backgroundImage: `url(${this.getQuestionBackground()})`
               }}
             >
-              <h1 class="display-5">Would You Rather?</h1>
+              <h1 className="display-5">Would You Rather?</h1>
               <div className="d-flex align-middle overjumbo">
                 <ReactCSSTransitionGroup
                   transitionName="example"
@@ -48,37 +50,37 @@ export class QuestionCard extends Component {
                   transitionEnter={false}
                   transitionLeave={true}
                 >
-                  <div className="btngroupquestion">
-                    <Link
+                  {!this.props.userAnswered && (<div className="btngroupquestion">
+                    <button
                       className="btn btn-outline-dark btnquestion"
                       onClick={this.props.handleAnswer}
-                      to={"/post/stats/" + this.props.questionToDisplay._id}
+
                       name="option"
                       value="A"
                     >
                       {this.props.questionToDisplay.optionA}
-                    </Link>
-                    <Link
+                    </button>
+                    <button
                       className="btn btn-outline-dark btnquestion"
                       name="option"
                       value="B"
                       onClick={this.props.handleAnswer}
-                      to={"/post/stats/" + this.props.questionToDisplay._id}
+
                     >
                       {this.props.questionToDisplay.optionB}
-                    </Link>
-                  </div>
+                    </button>
+                  </div>)}
                 </ReactCSSTransitionGroup>
               </div>
             </div>
 
-            <footer>
-              <h3>by {this.props.questionToDisplay.authorID.name}</h3>
+            <footer className="col-auto">
+              <h3 >by {this.props.questionToDisplay.authorID.name}</h3>
               <small>
                 {this.props.questionToDisplay.answers.length} answers
               </small>
             </footer>
-          </Fragment>
+          </div>
         )}
       </div>
     );
