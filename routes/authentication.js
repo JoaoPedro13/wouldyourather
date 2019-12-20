@@ -26,24 +26,30 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-router.post("/signup", imgUploader.single("image"), async (req, res, next) => {
-  console.log("req", req.body);
-  const { name, email, password } = req.body;
-  const picture = req.file
-    ? req.file.url
-    : "https://res.cloudinary.com/db1i5vxr8/image/upload/v1575997473/profile.png";
-  try {
-    const passwordHash = await bcryptjs.hash(password, 10);
-    if (!passwordHash) throw new Error("Wrong Password");
-    const newUser = await User.create({ name, passwordHash, email, picture });
-    if (!newUser) throw new Error("Wrong email");
-    req.session.user = newUser._id;
-    console.log("new user", newUser);
-    res.json({ newUser });
-  } catch (error) {
-    next(error);
+router.post(
+  "/signup",
+  imgUploader.single("picture"),
+  async (req, res, next) => {
+    console.log("BODY", req.body);
+    console.log("FILE", req.file);
+
+    const { name, email, password } = req.body;
+    const picture = req.file
+      ? req.file.url
+      : "https://res.cloudinary.com/db1i5vxr8/image/upload/v1575997473/profile.png";
+    try {
+      const passwordHash = await bcryptjs.hash(password, 10);
+      if (!passwordHash) throw new Error("Wrong Password");
+      const newUser = await User.create({ name, passwordHash, email, picture });
+      if (!newUser) throw new Error("Wrong email");
+      req.session.user = newUser._id;
+      console.log("new user", newUser);
+      res.json({ newUser });
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.post("/edituser", async (req, res, next) => {
   const { name, picture } = req.body;

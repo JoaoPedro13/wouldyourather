@@ -4,7 +4,6 @@ import {
   getQuestion,
   deleteQuestionAndAnswers
 } from "../services/contentServices";
-import QuestionStats from "./QuestionStats";
 
 export class EditQuestion extends Component {
   constructor(props) {
@@ -24,7 +23,6 @@ export class EditQuestion extends Component {
 
   async callQuestion() {
     const id = this.props.match.params.questionId;
-    console.log("oi");
     const retrievedQuestion = await getQuestion(id);
     console.log(retrievedQuestion);
     const { title, optionA, optionB, category } = retrievedQuestion;
@@ -54,7 +52,6 @@ export class EditQuestion extends Component {
 
   formHandler = async e => {
     e.preventDefault();
-
     try {
       console.log("editing");
       await edit(this.state);
@@ -67,43 +64,40 @@ export class EditQuestion extends Component {
   render() {
     return (
       <div className="container">
-        <h2 className="col-auto editQuestion-title">Edit your Question</h2>
+        <h2 className="col-auto editQuestion-title">Edit your Dilemma</h2>
         <div>
           <form onSubmit={this.formHandler} className="createQuestion-form">
             <div className="col-auto">
-              <label className="sr-only" htmlFor="inlineFormInput">
-                Title
-              </label>
+              <label>Title</label>
               <input
                 type="text"
                 id="title"
                 name="title"
                 onChange={this.handleChange}
                 className="form-control mb-2 mr-sm-2"
+                value={this.state.title}
               />
             </div>
             <div className="col-auto">
-              <label className="sr-only" htmlFor="inlineFormInput">
-                optionA
-              </label>
+              <label>optionA</label>
               <input
                 type="text"
                 id="optionA"
                 name="optionA"
                 onChange={this.handleChange}
                 className="form-control mb-2 mr-sm-2"
+                value={this.state.optionA}
               />
             </div>
             <div className="col-auto">
-              <label className="sr-only" htmlFor="inlineFormInput">
-                optionB
-              </label>
+              <label>optionB</label>
               <input
                 type="text"
                 id="optionB"
                 name="optionB"
                 onChange={this.handleChange}
                 className="form-control mb-2 mr-sm-2"
+                value={this.state.optionB}
               />
             </div>
             <div className="col-auto">
@@ -134,7 +128,7 @@ export class EditQuestion extends Component {
             </div>
             <div className="col-auto">
               <button className="btn btn-outline-dark edit-buttons">
-                Create a dilema
+                Edit dilemma
               </button>
             </div>
           </form>
@@ -143,13 +137,11 @@ export class EditQuestion extends Component {
               className="btn btn-outline-dark edit-buttons"
               onClick={this.handleDelete}
             >
-              Delete this dilema
+              Delete this dilemma
             </button>
           </div>
         </div>
-        <div className="col-auto">
-
-        </div>
+        <div className="col-auto"></div>
       </div>
     );
   }

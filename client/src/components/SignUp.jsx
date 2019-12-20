@@ -7,7 +7,8 @@ export class SignUp extends Component {
     this.state = {
       name: "",
       password: "",
-      email: ""
+      email: "",
+      picture: ""
     };
   }
 
@@ -16,6 +17,12 @@ export class SignUp extends Component {
     //console.log(event.target.value);
     this.setState({
       [event.target.name]: event.target.value
+    });
+  };
+
+  pictureHandler = event => {
+    this.setState({
+      picture: event.target.files[0]
     });
   };
 
@@ -51,7 +58,6 @@ export class SignUp extends Component {
                   onChange={this.handleChange}
                   placeholder="Name"
                   className="form-control mb-2 mr-sm-2"
-
                 />
               </div>
               <div className="col-auto">
@@ -65,7 +71,6 @@ export class SignUp extends Component {
                   onChange={this.handleChange}
                   placeholder="Email"
                   className="form-control mb-2 mr-sm-2"
-
                 />
               </div>
               <div className="col-auto">
@@ -79,8 +84,17 @@ export class SignUp extends Component {
                   onChange={this.handleChange}
                   placeholder="Password"
                   className="form-control mb-2 mr-sm-2"
-
                 />
+              </div>
+              <div className="col-auto">
+                <input
+                  type="file"
+                  id="picture"
+                  name="picture"
+                  onChange={this.pictureHandler}
+                  className="form-control mb-2 mr-sm-2"
+                />
+                <label htmlFor="picture">Add a Profile Picture</label>
               </div>
             </div>
             <div className="col-auto">

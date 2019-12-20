@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TopQuestions from "../components/TopQuestions";
-import logo from "./../nespera.png";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
 
 const Home = () => {

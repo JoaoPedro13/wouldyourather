@@ -30,7 +30,7 @@ router.get("/random", async (req, res, next) => {
     const retrievedQuestions = await Question.find({
       _id: { $nin: req.session.responded }
     })
-      .populate("authorID")
+      .populate("authorID  answers")
       .exec();
     const random = randomNumber(0, retrievedQuestions.length - 1);
     res.json(retrievedQuestions[random]);
@@ -58,28 +58,33 @@ router.post("/create", routeGuard, async (req, res, next) => {
     next(error);
   }
 });
-
-router.post("/edit/:id", routeGuard, async (req, res, next) => {
-  const { optionA, optionB, category, title } = req.body;
-  const currentUser = req.session.user;
-  const currentQuestion = req.params.id;
-
-  try {
-    const insertedQuestion = await Question.findOneAndUpdate(
-      { AuthorID: currentUser, _id: currentQuestion },
-      {
-        optionA,
-        optionB,
-        category,
-        title
-      }
+/*  */
+router.post(
+  "/edit/:id",
+  /* routeGuard, */ async (req, res, next) => {
+    const { optionA, optionB, category, title } = req.body;
+    const currentUser = req.session.user;
+    const currentQuestion = req.params.id;
+    console.log(
+      "----------------------------------------------------------------------------------------------------"
     );
-    console.log(insertedQuestion);
-    res.send(insertedQuestion);
-  } catch (error) {
-    next(error);
+    try {
+      const insertedQuestion = await Question.findOneAndUpdate(
+        { AuthorID: currentUser, _id: currentQuestion },
+        {
+          optionA,
+          optionB,
+          category,
+          title
+        }
+      );
+      console.log(insertedQuestion);
+      res.send(insertedQuestion);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 //DELETE QUESTIONS with respective answers
 router.post("/delete/:id", routeGuard, async (req, res, next) => {
@@ -118,7 +123,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-//TODO: Check if anything missing -> If the ID is in the url it will show for both random and non-random
+//ANSWERS
 router.post("/:id", async (req, res, next) => {
   // req.session.responded.push(req.params.id);
   req.session.responded = [...(req.session.responded || []), req.params.id];

@@ -1,8 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { getTopQuestions } from "./../services/contentServices";
 import { Link } from "react-router-dom";
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
-
+//import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
 
 export class TopQuestions extends Component {
   constructor(props) {
@@ -27,27 +26,29 @@ export class TopQuestions extends Component {
   render() {
     return (
       <div className="topquestions">
-
-
-
-
         <h3>Most Popular</h3>
 
         <ul className="list-group">
           {this.state.topList &&
             this.state.topList.map(question => (
-              <Link className={"list-group-item "} key={question._id} to={"/post/" + question._id}>
-                <li className={"d-flex justify-content-between align-items-center"}>{question.title}
-                  <span class="badge badge-primary badge-pill">{question.answers.length}</span>
+              <Link
+                className={"list-group-item "}
+                key={question._id}
+                to={"/post/" + question._id}
+              >
+                <li
+                  className={
+                    "d-flex justify-content-between align-items-center"
+                  }
+                >
+                  {question.title}
+                  <span className="badge badge-primary badge-pill">
+                    {question.answers.length}
+                  </span>
                 </li>
               </Link>
             ))}
         </ul>
-
-
-
-
-
       </div>
     );
   }

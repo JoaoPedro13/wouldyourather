@@ -10,7 +10,9 @@ export const edit = async data => {
   try {
     const response = await apiAuthenticationService.post("/edituser", data);
     console.log(response);
-  } catch (error) { throw error; }
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const login = async data => {
@@ -23,8 +25,14 @@ export const login = async data => {
 };
 
 export const signUp = async data => {
+  console.log(data);
+  const uploadData = new FormData();
+  uploadData.append("picture", data.picture);
+  uploadData.append("name", data.name);
+  uploadData.append("password", data.password);
+  uploadData.append("email", data.email);
   try {
-    const response = await apiAuthenticationService.post(`/signup`, data);
+    const response = await apiAuthenticationService.post(`/signup`, uploadData);
     console.log("asdasd", response.data.newUser);
     return response.data.newUser;
   } catch (error) {
@@ -40,8 +48,6 @@ export const logOut = async () => {
   }
 };
 
-
-
 export const userInformation = async () => {
   try {
     const response = await apiAuthenticationService.get(`/user-information`);
@@ -50,4 +56,3 @@ export const userInformation = async () => {
     throw error;
   }
 };
-

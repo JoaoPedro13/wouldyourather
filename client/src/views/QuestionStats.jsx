@@ -1,94 +1,97 @@
-import React, { Component, Fragment } from 'react'
-import { Link } from "react-router-dom"
-import { getQuestion } from "./../services/contentServices"
-import Chart from "./../components/Chart"
-import Share from '../components/Share';
-import MetaTags from 'react-meta-tags';
-
-
+import React, { Fragment, Component } from "react";
+import { getQuestion } from "../services/contentServices";
+import QuestionStatsComponent from "./../components/QuestionStatsComponent";
+import { Link } from "react-router-dom";
+import Share from "../components/Share";
 
 export class QuestionStats extends Component {
   constructor(props) {
     super(props);
-    this.state = { currentQuestion: null }
+    this.state = {
+      questionToDisplay: null
+    };
     this.callQuestion = this.callQuestion.bind(this);
+    this.getQuestionBackground = this.getQuestionBackground.bind(this);
   }
 
-  async callQuestion(id) {
-
-
-    try {
-      const retrievedQuestion = await getQuestion(id);
-      //console.log(retrievedQuestion);
-
-      this.setState({ currentQuestion: retrievedQuestion });
-
+  getQuestionBackground() {
+    switch (this.state.questionToDisplay.category) {
+      case "heart":
+        return "https://res.cloudinary.com/db1i5vxr8/image/upload/v1576757591/nespera%20pics/love_fyxufp.jpg";
+        break;
+      case "dollar":
+        return "https://res.cloudinary.com/db1i5vxr8/image/upload/v1576757592/nespera%20pics/money_dggzcp.jpg";
+        break;
+      case "football":
+        return "https://res.cloudinary.com/db1i5vxr8/image/upload/v1576757764/nespera%20pics/sports_uuotua.jpg";
+        break;
+      case "wrench":
+        return "https://res.cloudinary.com/db1i5vxr8/image/upload/v1576757764/nespera%20pics/sports_uuotua.jpg";
+        break;
     }
-    catch (error) { console.log(error); }
+  }
+
+  async callQuestion() {
+    const id = this.props.match.params.questionId;
+    const retrievedQuestion = await getQuestion(id);
+    this.setState({
+      questionToDisplay: retrievedQuestion
+    });
   }
 
   componentDidMount() {
-
-    this.setState({ currentQuestion: this.props.questionToDisplay })
-    const questionId = this.state.currentQuestion._id;
-    this.callQuestion(questionId);
-
-
-
+    this.callQuestion();
   }
 
-  count
-
   render() {
-
     return (
-      <Fragment>
-        <MetaTags>
+      <div>
+        {this.state.questionToDisplay && (
+          <div>
+            <div className="container-fluid">
+              {this.state.questionToDisplay && (
+                <div className="col-auto">
+                  <div
+                    className="jumbotron jumbotronStats"
+                    style={{
+                      backgroundImage: `url(${this.getQuestionBackground()})`
+                    }}
+                  >
+                    <h1 className="display-5">Would You Rather?</h1>
+                    <div className="anotherBtn">
+                      <Link
+                        className="btn btn-ouline-dark btnquestion"
+                        to="/post/random"
+                      >
+                        Another Question!
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="afterJumboStats">
+                    <div>
+                      <h3>by {this.state.questionToDisplay.authorID.name}</h3>
+                      <small>
+                        {this.state.questionToDisplay.answers.length} answers
+                      </small>
+                    </div>
+                    <Share id={this.state.questionToDisplay._id} />
+                  </div>
+                </div>
+              )}
+            </div>
 
-          <meta id="description" name="description" content="world's best dilemmas" />
-          <meta id="ogtitle" property="og:title" content="would you rather" />
-          <meta id="ogdescription" property="og:description" content="world's best dilemmas" />
-          <meta id="ogimage" property="og:image"
-            content="https://res.cloudinary.com/db1i5vxr8/image/upload/v1576674314/nespera%20pics/ASD_j2cv0w.png" />
-          <meta id="ogtype" property="og:type" content="website" />
-
-        </MetaTags>
-
-        <div>
-          <h1>Stats!</h1>
-          {this.state.currentQuestion && <Fragment>
-            <p>Created by {this.state.currentQuestion.authorID.name} in {this.state.currentQuestion.createdAt}</p>
-            <p>Total answers: {this.state.currentQuestion.answers.length}</p>
-            <p>{this.state.currentQuestion.optionA}:{this.state.currentQuestion.answers.filter(answer =>
-              answer.option === "A"
-
-
-            ).length}</p>
-            <p>{this.state.currentQuestion.optionB}:{this.state.currentQuestion.answers.filter(answer =>
-              answer.option === "B"
-
-
-            ).length}</p>
-
-
-
-            <Chart amountForA={this.state.currentQuestion.answers.filter(answer =>
-              answer.option === "A"
-
-
-            ).length} amountForB={this.state.currentQuestion.answers.filter(answer =>
-              answer.option === "B"
-
-
-            ).length} />
-          </Fragment >}
-
-
-          <Link to="/post/random">Another Question! </Link>
-        </div>
-      </Fragment>
-    )
+            <Fragment>
+              <div className="stats">
+                <QuestionStatsComponent
+                  questionToDisplay={this.state.questionToDisplay}
+                />
+              </div>
+            </Fragment>
+          </div>
+        )}
+      </div>
+    );
   }
 }
 
-export default QuestionStats
+export default QuestionStats;
