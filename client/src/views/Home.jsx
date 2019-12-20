@@ -27,7 +27,7 @@ const Home = () => {
                 to="/post/random"
                 role="button"
               >
-                Random Dilema
+                Random Dilemma
               </Link>
               <Link
                 className="btn btn-outline-dark menubtn "

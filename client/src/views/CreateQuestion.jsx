@@ -93,7 +93,7 @@ export class CreateQuestion extends Component {
             </div>
           </div>
           <div className="col-auto">
-            <button className="btn btn-outline-dark">Create a dilema</button>
+            <button className="btn btn-outline-dark">Create a dilemma</button>
           </div>
         </form>
       </div>
