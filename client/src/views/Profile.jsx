@@ -59,7 +59,7 @@ export class Profile extends Component {
           <div className="d-flex align-middle overjumbo"></div>
         </div>
         <div className="col-auto">
-          <h3 style={{ margin: "5%" }}>My Questions</h3>
+          <h3 style={{ margin: "5%" }}>My Dilemmas</h3>
           <ul className="list-group">
             {this.state.questions &&
               this.state.questions.map(question => (

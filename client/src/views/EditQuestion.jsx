@@ -64,7 +64,7 @@ export class EditQuestion extends Component {
   render() {
     return (
       <div className="container">
-        <h2 className="col-auto editQuestion-title">Edit your Dilemma</h2>
+        <h3 className="col-auto editQuestion-title">Edit your Dilemma</h3>
         <div>
           <form onSubmit={this.formHandler} className="createQuestion-form">
             <div className="col-auto">

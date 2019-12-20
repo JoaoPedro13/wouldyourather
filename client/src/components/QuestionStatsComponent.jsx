@@ -32,7 +32,7 @@ export class QuestionStats extends Component {
           <meta
             id="ogimage"
             property="og:image"
-            content="https://res.cloudinary.com/db1i5vxr8/image/upload/v1576674314/nespera%20pics/ASD_j2cv0w.png"
+            content="https://res.cloudinary.com/db1i5vxr8/image/upload/v1576850083/wyr_mkluos.png"
           />
           <meta id="ogtype" property="og:type" content="website" />
         </MetaTags>
