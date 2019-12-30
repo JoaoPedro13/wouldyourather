@@ -4,7 +4,7 @@ import gitLogo from "../github.png";
 function About() {
   return (
     <div className="container about">
-      <h1>Created in 2019 by Ironhack students:</h1>
+      <h1>Created in 2019 by:</h1>
       <div className="container about-elements">
         <div className="about-element btn btn-outline-dark btnquestion">
           <a href="https://github.com/JoaoPedro13">

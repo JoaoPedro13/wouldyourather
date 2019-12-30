@@ -44,7 +44,8 @@ export class SignUp extends Component {
   render() {
     return (
       <Fragment>
-        <div className="container forms signup ">
+        <h3>Sign Up!</h3>
+        <div className="container    justify-content-center">
           <form onSubmit={this.formHandler}>
             <div className="form-row d-flex justify-content-center">
               <div className="col-auto">

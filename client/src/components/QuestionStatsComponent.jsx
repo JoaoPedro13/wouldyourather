@@ -42,7 +42,6 @@ export class QuestionStats extends Component {
             <div className="col-auto">
               {/*             <p>Created by {this.props.questionToDisplay.authorID.name} in {this.props.questionToDisplay.createdAt}</p>
                */}
-
               <Chart
                 optionA={this.props.questionToDisplay.optionA}
                 optionB={this.props.questionToDisplay.optionB}
