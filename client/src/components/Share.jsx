@@ -5,7 +5,8 @@ import tweet from "../tweet.png";
 
 const Share = props => {
   return (
-    <div className="share-buttons">
+    <div className="container share-buttons" style={{ textAlign: "center" }}>
+      <h3>Share the dilemma!</h3>
       <a
         href={
           "https://www.facebook.com/sharer/sharer.php?u=" +
@@ -15,7 +16,7 @@ const Share = props => {
         }
         data-action="share/facebook/share"
       >
-        <img src={facebook} alt="facebook" />
+        <img style={{ maxWidth: "100px" }} src={facebook} alt="facebook" />
       </a>
 
       <a
@@ -28,7 +29,7 @@ const Share = props => {
         className="twitter-share-button"
         data-show-count="false"
       >
-        <img src={tweet} alt="tweet" />
+        <img style={{ maxWidth: "100px" }} src={tweet} alt="tweet" />
       </a>
       <script
         async
@@ -45,7 +46,7 @@ const Share = props => {
         }
         data-action="share/whatsapp/share"
       >
-        <img src={whatsapp} alt="whatsapp" />
+        <img style={{ maxWidth: "100px" }} src={whatsapp} alt="whatsapp" />
       </a>
     </div>
   );

@@ -74,7 +74,7 @@ export class QuestionStats extends Component {
                         {this.state.questionToDisplay.answers.length} answers
                       </small>
                     </div>
-                    <Share id={this.state.questionToDisplay._id} />
+
                   </div>
                 </div>
               )}
@@ -86,6 +86,7 @@ export class QuestionStats extends Component {
                   questionToDisplay={this.state.questionToDisplay}
                 />
               </div>
+              <Share id={this.state.questionToDisplay._id} />
             </Fragment>
           </div>
         )}

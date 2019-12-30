@@ -48,9 +48,9 @@ export default class Example extends PureComponent {
 
   render() {
     return (
-      <div className="chart">
+      <div className="chart" >
         <ResponsiveContainer>
-          <PieChart>
+          <PieChart >
             <Pie
               dataKey="value"
               data={this.data}
@@ -67,9 +67,9 @@ export default class Example extends PureComponent {
               ))}
             </Pie>
             <Legend
-              verticalAlign="top"
+              verticalAlign="bottom"
               align="right"
-              height={36}
+              height={30}
               payload={[
                 {
                   value: this.props.optionA,
@@ -88,7 +88,7 @@ export default class Example extends PureComponent {
             <LabelList dataKey="name" position="outside" />
           </PieChart>
         </ResponsiveContainer>
-      </div>
+      </div >
     );
   }
 }
