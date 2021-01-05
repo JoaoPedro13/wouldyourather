@@ -10,7 +10,7 @@
     "prepare": "cd client && npm install && npm run build && cd .."
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.18.1",
     "connect-mongo": "^3.1.2",
